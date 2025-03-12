@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>Pago</title>
+</head>
+<body>
+    <div class="form-container">
+        <h2 class="form-title">Pasarela de pago</h2>
+        <div class="form">
+            <form method="POST">
+                {% csrf_token %}
+                <select name="metodo_pago" class="form-dropbox" required>
+                    <option value="" disabled selected>Seleccione un método de pago</option>
+                    <option value="credito">Credito</option>
+                    <option value="debito">Debito</option>
+                </select><br>
+                <input type="text" class="form-card-number" name="numeroTarjeta" placeholder="Número de tarjeta" required><br>
+                <input type="text" class="form-CVV" name="numeroSeguridad" placeholder="CVV" required><br>
+                <h4 class="form-text">Total a pagar: ${{ totalPago }}</h4>
+                <input type="submit" class="form-button" value="Pagar"><br>
+            </form>
+        </div>
+    </div>
+</body>
+
+{% endblock %}
+

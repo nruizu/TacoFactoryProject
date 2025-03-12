@@ -4,4 +4,4 @@ from django import forms
 class PagoForm(forms.ModelForm):
     class Meta:
         model = Pago
-        fields = '__all__'
+        fields = ['metodoPago', 'numeroTarjeta', 'numeroSeguridad', 'fechaVencimiento']

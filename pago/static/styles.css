@@ -1,0 +1,160 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+    background-color: #ffebd2;
+    color: #fff;
+}
+
+div, header, nav, ul, li, a, p, h1, h2, img {
+    box-sizing: border-box;
+}
+
+/* --- NAVBAR SECTION --- */
+
+.nav {
+    background-color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 6px 20px;
+    position: sticky;
+    top: 0;
+    margin-bottom: 10px;
+    box-shadow: 0 0 25px #0009;
+}
+
+.nav__ul {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+}
+
+.nav__item {
+    list-style: none;
+}
+
+.nav__ul-container {
+    flex-grow: 4;
+    text-align: center;
+}
+
+.nav__link {
+    color: #a80032;
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 10px;
+    border-radius: 0;
+    transition: background-color 0.24s, border-radius 0.2s, outline 0.2s, outline-offset 0.2s;
+    margin: 2px;
+    outline: 0;
+    outline-offset: 0px;
+}
+
+.nav__link:hover {
+    background-color: #f803;
+    border-radius: 20px;
+    outline: 2px solid #f806;
+    outline-offset: -7px;
+}
+
+.link--login, .link--register {
+    background-color: #a80032;
+    color: #fff;
+    border-radius: 20px;
+    padding: 8px 24px;
+    margin-left: 6px;
+}
+
+.link--login:hover, .link--login:hover {
+    background-color: #f809;
+}
+
+h1 {
+    margin: 0;
+    font-size: 3.6rem;
+    text-wrap: balance;
+}
+
+/* ----------- Formulario ------------ */
+
+.form-container {
+    width: 40%;
+    height: 50%;
+    justify-content: center;
+    margin: auto;
+    padding: 20px;
+    background-color: #e2d1d1;
+    text-align: center;
+    margin-top: 12%;
+    border: 1px solid #000;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #000; 
+}
+
+.form-dropbox{
+    width: 230px;
+    height: 30px;
+    justify-content: center;
+    margin: auto;
+    margin: 10px;
+    padding: 5px;
+    background-color: #e2dfdf;
+    text-align: center;
+    border: 1px solid #000;
+    border-radius: 7px;
+}
+
+.form-card-number{
+    width: 200px;
+    height: 20px;
+    justify-content: center;
+    margin: auto;
+    margin: 10px;
+    padding: 5px;
+    background-color: #e2dfdf;
+    text-align: center;
+    border: 1px solid #000;
+    border-radius: 7px;
+}
+
+.form-CVV{
+    width: 100px;
+    height: 20px;
+    justify-content: center;
+    margin: auto;
+    margin: 10px;
+    padding: 5px;
+    background-color: #e2dfdf;
+    text-align: center;
+    border: 1px solid #000;
+    border-radius: 7px;
+}
+
+.form-button{
+    width: 60px;
+    height: 30px;
+    margin: 10px;
+    padding: 5px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    background-color: #a80032;
+    text-align: center;
+    border: 1px solid #000;
+    border-radius: 7px;
+    color: #fff;
+}
+
+.form-text{
+    color: #000;
+    font-size: 15px;
+}
+
+.form-title{
+    color: #000;
+    font-size: 35px;
+    font-weight: 400;
+    margin: 10px;
+}
