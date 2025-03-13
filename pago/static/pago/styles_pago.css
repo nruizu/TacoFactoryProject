@@ -34,12 +34,21 @@ div, header, nav, ul, li, a, p, h1, h2, img {
 
 .nav__item {
     list-style: none;
+    margin: 0 8px;
 }
 
 .nav__ul-container {
     flex-grow: 4;
     text-align: center;
 }
+
+.cart-button i {
+    font-size: 20px;
+}
+.cart-button {
+    color: #a80032;
+}
+
 
 .nav__link {
     color: #a80032;
@@ -54,13 +63,13 @@ div, header, nav, ul, li, a, p, h1, h2, img {
 }
 
 .nav__link:hover {
-    background-color: #f803;
+    background-color: #daa2b3;
     border-radius: 20px;
-    outline: 2px solid #f806;
+    outline: 2px solid #d197a8;
     outline-offset: -7px;
 }
 
-.link--login, .link--register {
+.link--login {
     background-color: #a80032;
     color: #fff;
     border-radius: 20px;
@@ -68,8 +77,21 @@ div, header, nav, ul, li, a, p, h1, h2, img {
     margin-left: 6px;
 }
 
-.link--login:hover, .link--login:hover {
-    background-color: #f809;
+.link--login:hover {
+    background-color: #a83356;
+}
+
+.link--register {
+    border: 2px solid #a80032;
+    color: #a80032;
+    border-radius: 20px;
+    padding: 6px 22px;
+    margin-left: 6px;
+}
+
+.link--register:hover {
+    background-color: #daa2b3;
+    border-color: #a80032
 }
 
 h1 {
