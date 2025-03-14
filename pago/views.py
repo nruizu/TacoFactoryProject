@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 from django.shortcuts import render, redirect
 from .form import PagoForm
@@ -5,9 +6,9 @@ import datetime
 
 # Create your views here.
 
-class PagoView(TemplateView):
+class PagoView(LoginRequiredMixin, TemplateView):
     template_name = 'pago.html'
-
+    
     def get(self, request, monto=0):
         form = PagoForm(request.POST)
         totalPago = monto

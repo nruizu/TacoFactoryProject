@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'user/styles_user.css' %}">
+    <title>Inicio de Sesion</title>
+</head>
+<body>
+    <div class="form-container-login">
+        <h2 class="form-title">Inicia Sesion</h2>
+        <div class="form">
+            <form method="POST">
+                {% csrf_token %}
+                <input type="email" class="form-text" name="username" placeholder="Correo" required><br>
+                <input type="password" class="form-text" name="password" placeholder="Contraseña" required><br>
+                <p class="texto">Eres nuevo? <a class="vinculo" href="{% url 'registro' %}">Regístrate</a></p><br>
+                <input type="submit" class="form-button" value="Iniciar Sesion"><br>
+            </form>
+        </div>
+    </div>
+</body>
+
+{% endblock %}
+

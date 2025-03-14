@@ -125,10 +125,13 @@ STATICFILES_DIRS = [
     BASE_DIR / "taco_factory/static", 
     "pago/static", 
     "usuario/static",
-    "static",
 ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = "usuario.Usuario"
+
+LOGIN_URL = '/login/'
