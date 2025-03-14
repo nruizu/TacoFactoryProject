@@ -4,6 +4,7 @@
 <head>
     <link rel="stylesheet" href="{% static 'base/styles.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <nav class="nav">
@@ -12,9 +13,9 @@
                 <li class="nav__item"><a href="{% url 'home' %}" class="nav__link">Home</a></li>
                 <li class="nav__item"><a href="#" class="nav__link">Platos</a></li>
                 <li class="nav__item"><a href="#" class="nav__link">Bebidas</a></li>
-                <li class="nav__item"><a href="#" class="nav__link">Contact</a></li>
-                <li class="nav__item"><a href="{% url 'login' %}" class="nav__link link--login">Log In</a></li>
-                <li class="nav__item"><a href="{% url 'registro' %}" class="nav__link link--register">Register</a></li>
+                <li class="nav__item"><a href="#" class="nav__link">Contacto</a></li>
+                <li class="nav__item"><a href="{% url 'login' %}" class="nav__link link--login">Iniciar sesión</a></li>
+                <li class="nav__item"><a href="{% url 'registro' %}" class="nav__link link--register">Registrarse</a></li>
             </ul>
         </div>
     </nav>
