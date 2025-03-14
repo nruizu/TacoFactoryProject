@@ -31,7 +31,7 @@ def iniciar_sesion(request):
         if form.is_valid():
             correo = form.cleaned_data["username"]
             contraseña = form.cleaned_data["password"]
-            user = authenticate(request, correo=correo, password=contraseña)
+            user = authenticate(request, email=correo, password=contraseña)
             if user is not None:
                 login(request, user)
                 return redirect("home")

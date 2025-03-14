@@ -14,7 +14,8 @@
         <div class="form">
             <form method="POST">
                 {% csrf_token %}
-                <input type="email" class="form-text" name="correo" placeholder="Correo" required><br>
+                <input type="text" class="form-text" name="username" placeholder="Nombre de usuario" required><br>
+                <input type="email" class="form-text" name="email" placeholder="Correo" required><br>
                 <input type="text" class="form-text" name="numDocumento" placeholder="Numero de documento" required><br>
                 <input type="text" class="form-text" name="celular" placeholder="Numero de celular" required><br>
                 <input type="text" class="form-text form-document" name="direccion" placeholder="Direccion" required><br>
@@ -22,15 +23,6 @@
                 <input type="text" class="form-text" name="password2" id="id_password2" placeholder="Confirmar contraseña" required><br>
                 <p class="texto">Ya tienes una cuenta? <a class="vinculo" href="{% url 'login' %}">Inicia Sesion</a></p><br>
                 <input type="submit" class="form-button" value="Registrarse">
-                {% if form.errors %}
-                    <div style="color: red;">
-                        {% for field in form %}
-                            {% for error in field.errors %}
-                                <p>{{ error }}</p>
-                            {% endfor %}
-                        {% endfor %}
-                    </div>
-                {% endif %}
             </form>
         </div>
     </div>
