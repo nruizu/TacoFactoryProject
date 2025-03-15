@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Menú de Platos{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">Menú de Platos</h1>
+
+    <!-- Barra de búsqueda -->
+    <form method="GET" action="{% url 'platos' %}" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Buscar un plato..." value="{{ query }}">
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
+    </form>
+
+    <!-- Mostrar todos los platos -->
+    <h2>Platos Fuertes</h2>
+    <div class="row">
+        {% for plato in platos_fuertes %}
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ plato.idPlato }}</h5>
+                        <p class="card-text">{{ plato.descripcion }}</p>
+                        <p><strong>Precio:</strong> ${{ plato.precio }}</p>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>No se encontraron platos fuertes.</p>
+        {% endfor %}
+    </div>
+
+    <h2>Combos</h2>
+    <div class="row">
+        {% for plato in combos %}
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ plato.nombre }}</h5>
+                        <p class="card-text">{{ plato.idPlato }}</p>
+                        <p class="card-text">{{ plato.descripcion }}</p>
+                        <p><strong>Precio:</strong> ${{ plato.precio }}</p>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>No se encontraron combos.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

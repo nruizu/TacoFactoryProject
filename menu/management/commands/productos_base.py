@@ -1,0 +1,24 @@
+from menu.models import Plato, Bebida
+from django.core.management.base import BaseCommand
+
+class Command(BaseCommand):
+
+    def handle(self, *args, **kwargs):
+        Plato.objects.create(idPlato = 'F1', nombre = 'Flauta de Queso', descripcion = 'Flauta de tortilla de harina con queso mozzarella, guacamole, sour cream y salsa a elegir.', precio = 7.600, categoria = 'Plato Fuerte')
+        Plato.objects.create(idPlato = 'F2', nombre = 'Taco', descripcion = 'Taco con vegetales de temporada, proteína y salsa a elegir.', precio = 11.400, categoria = 'Plato Fuerte')
+        Plato.objects.create(idPlato = 'F3', nombre = 'Sopa de Tomate', descripcion = 'Sopa de tomate fresco con queso, nachos y proteína a elegir.', precio = 11.400, categoria = 'Plato Fuerte')
+        Plato.objects.create(idPlato = 'F4', nombre = 'Nachos Sencillos', descripcion = 'Porción de nachos acompañados de 2 salsas a elegir.', precio = 14.700, categoria = 'Plato Fuerte')
+        Plato.objects.create(idPlato = 'F5', nombre = 'Burrito Junior', descripcion = 'Burrito con arroz, frijoles, vegetales, queso, proteína y salsa a elegir.', precio = 20.600, categoria = 'Plato Fuerte')
+        Plato.objects.create(idPlato = 'F6', nombre = 'Burrito Mixto 2 Proteinas', descripcion = 'Burrito con arroz, frijoles, vegetales de temporada, queso, 2 proteínas y salsa a elegir.', precio = 31.700, categoria = 'Plato Fuerte')
+        Plato.objects.create(idPlato = 'C1', nombre = 'Combo Burrito', descripcion = 'Burrito con arroz al limon y cilantro , frijol, vegetales salteados, queso, maíz tierno, maduro, 1 proteína, salsas de la casa y bebida a elegir.', precio = 28.700, categoria = 'Combo')
+        Plato.objects.create(idPlato = 'C2', nombre = 'Combo Quesadilla', descripcion = 'Quesadilla con 1 proteína, queso mozarella, maíz o maduro, guacamole y sour cream, 1 salsa de la casa y bebida a elegir.', precio = 28.700, categoria = 'Combo')
+        Plato.objects.create(idPlato = 'C3', nombre = 'Combo Ensalada Mexicana', descripcion = 'Ensalada mexicana con guacamole, pico de gallo, vegetales salteados, lechuga, 1 proteína, jalapeños, maíz, queso mozarella, maduro, salsa de la casa y bebida a elegir.', precio = 28.700, categoria = 'Combo')
+        Plato.objects.create(idPlato = 'C4', nombre = 'Combo Molde de Papas', descripcion = 'Papa a la francesa gratinadas con queso mozzarella, pico de gallo, guacamole, mayonesa ranchera, proteína, salsa de la casa y bebida a elegir.', precio = 28.700, categoria = 'Combo')
+        Plato.objects.create(idPlato = 'C5', nombre = 'Combo tres Tacos', descripcion = '3 tacos con proteína a elegir, lechuga, guacamole, pico de gallo, maduro o maíz, sour cream, queso y salsa de la casa a elegir.', precio = 28.700, categoria = 'Combo')
+        Plato.objects.create(idPlato = 'C6', nombre = 'Combo Nachos Gratinados', descripcion = 'Nachos de maíz sobre base de queso, 1 proteína, gratinado con queso mozzarella, pico de gallo, guacamole y bebida a elegir.', precio = 29.900, categoria = 'Combo')
+        Plato.objects.create(idPlato = 'C7', nombre = 'Combo Fajitas', descripcion = '3 tortillas de harina, fajitas con carne sazonadas con verduras de temporada, crema agria, pico de gallo, guacamole, salsa de la casa y bebida a elegir.', precio = 28.700, categoria = 'Combo')
+        Bebida.objects.create(idBebida = 'G1', nombre = 'Coca Cola', descripcion = 'Bebida gaseosa Coca Cola original', precio = 4.000, categoria = 'Gaseosa', cantidad = '237 ml')
+        Bebida.objects.create(idBebida = 'G2', nombre = 'Coca Cola Zero', descripcion = 'Bebida gaseosa Coca Cola sin azúcar', precio = 4.000, categoria = 'Gaseosa', cantidad = '237 ml')
+        Bebida.objects.create(idBebida = 'A1', nombre = 'Agua Manzana', descripcion = 'Agua saborizada Manzana Brisa', precio = 3.000, categoria = 'Agua', cantidad = '280 ml')
+        Bebida.objects.create(idBebida = 'A2', nombre = 'Agua Maracuya', descripcion = 'Agua saborizada Maracuya Brisa', precio = 3.000, categoria = 'Agua', cantidad = '280 ml')
+        Bebida.objects.create(idBebida = 'A3', nombre = 'Agua Limón', descripcion = 'Agua saborizada Limón Brisa', precio = 3.000, categoria = 'Agua', cantidad = '280 ml')

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'pago',
     'usuario',
     'carrito',
+    'menu',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +59,7 @@ ROOT_URLCONF = 'taco_factory.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "taco_factory/templates"],
+        'DIRS': [BASE_DIR / "taco_factory/templates", BASE_DIR / "menu/templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -80,7 +81,7 @@ WSGI_APPLICATION = 'taco_factory.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3'
     }
 }
 
