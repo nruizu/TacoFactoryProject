@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalles de la Bebida{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Detalles de la Bebida</h1>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ bebida.nombre }}</h5>
+            <p class="card-text"><strong>ID:</strong> {{ bebida.idBebida }}</p>
+            <p class="card-text"><strong>Descripción:</strong> {{ bebida.descripcion }}</p>
+            <p class="card-text"><strong>Precio:</strong> ${{ bebida.precio }}</p>
+            <a href="{% url 'bebidas' %}" class="btn btn-secondary">Volver al Menú</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Menú de Bebidas{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">Menú de Bebidas</h1>
+
+    <!-- Barra de búsqueda -->
+    <form method="GET" action="{% url 'bebidas' %}" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Buscar una bebida..." value="{{ query }}">
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
+    </form>
+
+    <!-- Mostrar todos los platos -->
+    <h2>Gaseosas</h2>
+    <div class="row">
+        {% for bebida in gaseosas %}
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ bebida.nombre }}</h5>
+                        <p class="card-text">{{ bebida.iBebida }}</p>
+                        <p class="card-text">{{ bebida.descripcion }}</p>
+                        <p><strong>Precio:</strong> ${{ bebida.precio }}</p>
+                        <a href="{% url 'buscar_bebida' bebida.idBebida %}" class="btn btn-info">Ver detalles</a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>No se encontraron gaseosas.</p>
+        {% endfor %}
+    </div>
+
+    <h2>Aguas</h2>
+    <div class="row">
+        {% for bebida in aguas %}
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ bebida.idBebida }}</h5>
+                        <p class="card-text">{{ bebida.descripcion }}</p>
+                        <p><strong>Precio:</strong> ${{ bebida.precio }}</p>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>No se encontraron aguas.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

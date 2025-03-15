@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalles del Plato{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Detalles del Plato</h1>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ plato.nombre }}</h5>
+            <p class="card-text"><strong>ID:</strong> {{ plato.idPlato }}</p>
+            <p class="card-text"><strong>Descripción:</strong> {{ plato.descripcion }}</p>
+            <p class="card-text"><strong>Precio:</strong> ${{ plato.precio }}</p>
+            <a href="{% url 'platos' %}" class="btn btn-secondary">Volver al Menú</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

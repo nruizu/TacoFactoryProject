@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Menú de Bebidas{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">Menú</h1>
+
+    <h2>Platos</h2>
+    <ul>
+        {% for plato in platos %}
+            <li>{{ plato.nombre }} - {{ plato.precio }}</li>
+        {% endfor %}
+    </ul>
+    
+    <h2>Bebidas</h2>
+    <ul>
+        {% for bebida in bebidas %}
+            <li>{{ bebida.nombre }} - {{ bebida.precio }}</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
