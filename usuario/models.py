@@ -14,4 +14,4 @@ class Usuario(AbstractUser):
     REQUIRED_FIELDS = ["numDocumento", "username"]
 
     def __str__(self):
-        return self.correo
+        return self.email
