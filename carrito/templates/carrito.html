@@ -1,0 +1,40 @@
+{% extends 'base_loged.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'carrito/styles_carrito.css' %}">
+
+<div class="carrito-container">
+    <h2>Tu Carrito</h2>
+    <div id="carrito-items">
+        {% if carrito.platos.all or carrito.bebidas.all %}
+            {% for item in carrito.platos.all %}
+            <div class="carrito-item" data-id="{{ item.plato.id }}" data-tipo="plato">
+                <p>{{ item.plato.nombre }}</p>
+                <p>Cantidad: <span class="cantidad">{{ item.cantidad }}</span></p>
+                <button class="btn-menos">-</button>
+                <button class="btn-mas">+</button>
+                <button class="btn-eliminar">Eliminar</button>
+            </div>
+            {% endfor %}
+            
+            {% for item in carrito.bebidas.all %}
+            <div class="carrito-item" data-id="{{ item.bebida.id }}" data-tipo="bebida">
+                <p>{{ item.bebida.nombre }}</p>
+                <p>Cantidad: <span class="cantidad">{{ item.cantidad }}</span></p>
+                <button class="btn-menos">-</button>
+                <button class="btn-mas">+</button>
+                <button class="btn-eliminar">Eliminar</button>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p style="text-align: center; font-size: 18px; color: gray; margin-top: 20px;">
+                Tu carrito está vacío. ¡Agrega algunos productos!
+            </p>
+        {% endif %}
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static 'carrito/carrito.js' %}"></script>
+{% endblock %}

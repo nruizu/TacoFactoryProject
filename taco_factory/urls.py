@@ -24,4 +24,5 @@ urlpatterns = [
     path('', include('pago.urls')),
     path('', include('usuario.urls')),
     path('', include('menu.urls')),
+    path('carrito/', include('carrito.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
