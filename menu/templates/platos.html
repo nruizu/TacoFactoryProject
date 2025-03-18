@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h1 class="mb-4">Menú de Platos</h1>
+    <h1 class="mb-4 text-center">Menú de Platos</h1>
 
     <!-- Barra de búsqueda -->
     <form method="GET" action="{% url 'platos' %}" class="mb-4">
@@ -15,38 +15,39 @@
     </form>
 
     <!-- Mostrar todos los platos -->
-    <h2>Platos Fuertes</h2>
-    <div class="row">
+    <h2 class="text-center">Platos Fuertes</h2>
+    <div class="row justify-content-center">
         {% for plato in platos_fuertes %}
-            <div class="col-md-4 mb-3">
-                <div class="card">
+            <div class="col-md-3 mb-4">
+                <div class="card text-center custom-card">
                     <div class="card-body">
-                        <h5 class="card-title">{{ plato.idPlato }}</h5>
+                        <h5 class="card-title">{{ plato.nombre }}</h5>
                         <p class="card-text">{{ plato.descripcion }}</p>
                         <p><strong>Precio:</strong> ${{ plato.precio }}</p>
+                        <button class="btn btn-success">Agregar al carrito</button>
                     </div>
                 </div>
             </div>
         {% empty %}
-            <p>No se encontraron platos fuertes.</p>
+            <p class="text-center">No se encontraron platos fuertes.</p>
         {% endfor %}
     </div>
 
-    <h2>Combos</h2>
-    <div class="row">
+    <h2 class="text-center">Combos</h2>
+    <div class="row justify-content-center">
         {% for plato in combos %}
-            <div class="col-md-4 mb-3">
-                <div class="card">
+            <div class="col-md-3 mb-4">
+                <div class="card text-center custom-card">
                     <div class="card-body">
                         <h5 class="card-title">{{ plato.nombre }}</h5>
-                        <p class="card-text">{{ plato.idPlato }}</p>
                         <p class="card-text">{{ plato.descripcion }}</p>
                         <p><strong>Precio:</strong> ${{ plato.precio }}</p>
+                        <button class="btn btn-success">{{ plato.idPlato }}</button>
                     </div>
                 </div>
             </div>
         {% empty %}
-            <p>No se encontraron combos.</p>
+            <p class="text-center">No se encontraron combos.</p>
         {% endfor %}
     </div>
 </div>
