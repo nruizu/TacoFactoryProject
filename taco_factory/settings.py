@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'usuario',
     'carrito',
     'menu',
+    'orden',
 ]
 
 MIDDLEWARE = [
@@ -130,6 +131,8 @@ STATICFILES_DIRS = [
     "pago/static", 
     "usuario/static",
     "menu/static",
+    "carrito/static",
+    "orden/static",
 ]
 
 STATIC_ROOT = BASE_DIR / "staticfiles"

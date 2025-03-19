@@ -1,9 +1,9 @@
-from django.shortcuts import render, get_object_or_404, redirect
+import json
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
 from .models import Carrito, CarritoPlato, CarritoBebida, Plato, Bebida
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from pago.views import PagoView
 
 # Create your views here.
 @login_required
@@ -11,42 +11,55 @@ def ver_carrito(request):
     carrito, _ = Carrito.objects.get_or_create(usuario=request.user)
     platos = CarritoPlato.objects.filter(carrito=carrito)
     bebidas = CarritoBebida.objects.filter(carrito=carrito)
-    
+
+    # Calcular el subtotal
+    subtotal = sum(item.plato.precio * item.cantidad for item in platos) + \
+               sum(item.bebida.precio * item.cantidad for item in bebidas)
+
+    # Guardar el subtotal en la sesión
+    request.session['monto'] = subtotal
+
     context = {
         'carrito': carrito,
         'platos': platos,
-        'bebidas': bebidas
+        'bebidas': bebidas,
+        'subtotal': subtotal,  # Pasar subtotal al template
     }
+
     return render(request, 'carrito.html', context)
 
 @csrf_exempt
 def agregar_al_carrito(request):
     if not request.user.is_authenticated:
-        return JsonResponse({"success": False, "redirect": "/login/?next=" + request.path})
-    
+        return JsonResponse({"success": False, "redirect": "/login/?next=" + request.path}, status=401)
+
     carrito, _ = Carrito.objects.get_or_create(usuario=request.user)
-    
-    tipo = request.POST.get("tipo")
-    item_id = request.POST.get("item_id")
-    
+
+    try:
+        data = json.loads(request.body.decode('utf-8'))  # Intentar obtener JSON
+        tipo = data.get("tipo")
+        item_id = data.get("item_id")
+    except json.JSONDecodeError:
+        return JsonResponse({"success": False, "message": "Error en formato JSON"}, status=400)
+
+    if not tipo or not item_id:
+        return JsonResponse({"success": False, "message": "Datos incompletos"}, status=400)
+
     if tipo == "plato":
         plato = get_object_or_404(Plato, idPlato=item_id)
         carrito_item, created = CarritoPlato.objects.get_or_create(carrito=carrito, plato=plato)
-        
     elif tipo == "bebida":
         bebida = get_object_or_404(Bebida, idBebida=item_id)
         carrito_item, created = CarritoBebida.objects.get_or_create(carrito=carrito, bebida=bebida)
-        
     else:
-        return JsonResponse({"success": False, "message": "Tipo de producto invalido"}, status=400)
-    
-    if created:    
+        return JsonResponse({"success": False, "message": "Tipo de producto inválido"}, status=400)
+
+    if created:
         carrito_item.cantidad = 1
     else:
         carrito_item.cantidad += 1
-        
     carrito_item.save()
-        
+
     return JsonResponse({"success": True, "message": "Producto agregado al carrito", "cantidad": carrito_item.cantidad})
 
 @login_required
@@ -94,6 +107,11 @@ def vaciar_carrito(request):
     
     return redirect('ver_carrito')
 
-def proceder_pago(request, monto):
-    pago = PagoView()
-    return pago.get(request, monto=0)
+@login_required
+def proceder_pago(request):
+    monto = request.session.get('monto', 0)  # Obtener el monto de la sesión
+    
+    if monto <= 0:
+        return redirect('ver_carrito')  # Evitar pagos sin monto válido
+
+    return redirect(reverse('pago'))  # Redirigir a la página de pago

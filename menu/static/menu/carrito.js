@@ -1,32 +1,61 @@
-$(document).ready(function() {
-    function getCSRFToken() {
-        let csrfInput = document.querySelector("input[name=csrfmiddlewaretoken]");
-        if (!csrfInput) {
-            console.error("Error: No se encontró el token CSRF en el documento.");
-            return "";
+// Obtener el token CSRF desde las cookies
+function getCSRFToken() {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.startsWith('csrftoken=')) {
+                cookieValue = cookie.substring('csrftoken='.length, cookie.length);
+                return cookieValue;
+            }
         }
-        return csrfInput.value;
+    }
+    console.error("Error: No se encontró el token CSRF en las cookies.");
+    return null;
+}
+
+// Función para modificar cantidad de productos en el carrito
+function modificarCantidad(id, accion, tipo) {
+    let cantidad = accion === "sumar" ? 1 : -1;
+    let csrfToken = getCSRFToken();
+
+    if (!id || !tipo) {
+        console.error("Error: ID o tipo de producto no definido en modificarCantidad", { id, tipo });
+        return;
     }
 
-    // Depuración para verificar si los botones tienen los atributos correctos
-    $(".btn-agregar-carrito").each(function() {
-        console.log("Verificando botón:", $(this).data());
+    console.log(`Modificando cantidad: ID=${id}, Acción=${accion}, Tipo=${tipo}`);
+
+    $.ajax({
+        url: "/carrito/actualizar/",
+        type: "POST",
+        headers: { "X-CSRFToken": csrfToken },
+        contentType: "application/json",
+        data: JSON.stringify({ item_id: id, tipo: tipo, cantidad: cantidad }),
+        success: function(response) {
+            console.log("Cantidad actualizada correctamente:", response);
+            location.reload(); // ⚠️ Esto recarga la página, pero podemos mejorarlo si es necesario
+        },
+        error: function(xhr) {
+            console.error("Error al modificar la cantidad:", xhr.responseText);
+            alert("Error al modificar la cantidad del producto.");
+        }
     });
+}
+
+$(document).ready(function() {
+    console.log("carrito.js cargado correctamente");
 
     // Agregar producto al carrito
     $(document).on("click", ".btn-agregar-carrito", function(event) {
         event.preventDefault();
 
-        let idPlato = $(this).data("idplato");
-        let idBebida = $(this).data("idbebida");
+        let id = $(this).data("idplato") || $(this).data("idbebida");
         let tipo = $(this).data("tipo");
 
-        let id = idPlato || idBebida; // Soporte para ambos modelos
-
-        console.log("Botón presionado - Datos obtenidos:", { idPlato, idBebida, tipo, id });
-
         if (!id || !tipo) {
-            console.error("Error: ID o tipo de producto no definido en el botón.", $(this).data());
+            console.error("Error: ID o tipo de producto no definido en el botón agregar.", $(this).data());
             return;
         }
 
@@ -36,29 +65,65 @@ $(document).ready(function() {
             return;
         }
 
-        $.post("/carrito/agregar/", {
-            item_id: id,
-            tipo: tipo,
-            csrfmiddlewaretoken: csrfToken
-        }).done(function(response) {
-            alert("Producto agregado al carrito");
-        }).fail(function(xhr) {
-            console.error("Error al agregar producto:", xhr.responseText);
-            alert("Error al agregar producto al carrito");
+        console.log("Agregando producto al carrito:", { id, tipo });
+
+        $.ajax({
+            url: "/carrito/agregar/",
+            type: "POST",
+            headers: { "X-CSRFToken": csrfToken },
+            contentType: "application/json",
+            data: JSON.stringify({ item_id: id, tipo: tipo }),
+            success: function(response) {
+                console.log("Producto agregado:", response);
+                alert("Producto agregado al carrito");
+            },
+            error: function(xhr) {
+                console.error("Error al agregar producto:", xhr.responseText);
+                alert("Error al agregar producto al carrito");
+            }
         });
     });
 
-    // Actualizar o eliminar producto del carrito
-    $(document).on("click", ".btn-mas, .btn-menos, .btn-eliminar", function(event) {
+    // Aumentar cantidad
+    $(document).on("click", ".btn-sumar", function(event) {
         event.preventDefault();
-
         let item = $(this).closest(".carrito-item");
-        let id = item.data("id");
-        let tipo = item.data("tipo");
-        let cantidad = $(this).hasClass("btn-mas") ? 1 : $(this).hasClass("btn-menos") ? -1 : 0;
-        let url = cantidad ? "/carrito/actualizar/" : "/carrito/eliminar/";
+        let id = item.data("data-id");
+        let tipo = item.data("data-tipo");
 
-        console.log("Acción sobre carrito:", { id, tipo, cantidad });
+        console.log("Botón sumar presionado:", { id, tipo });
+
+        if (!id || !id.trim() === "") {
+            console.error("Error: ID del producto vacío en botón sumar.", item);
+            return;
+        }
+
+        modificarCantidad(id, "sumar", tipo);
+    });
+
+    // Disminuir cantidad
+    $(document).on("click", ".btn-restar", function(event) {
+        event.preventDefault();
+        let item = $(this).closest(".carrito-item");
+        let id = item.data("data-id");
+        let tipo = item.data("data-tipo");
+
+        console.log("Botón restar presionado:", { id, tipo });
+
+        if (!id || !id.trim() === "") {
+            console.error("Error: ID del producto vacío en botón restar.", item);
+            return;
+        }
+
+        modificarCantidad(id, "restar", tipo);
+    });
+
+    // Eliminar producto
+    $(document).on("click", ".btn-eliminar", function(event) {
+        event.preventDefault();
+        let item = $(this).closest(".carrito-item");
+        let id = item.data("data-id");
+        let tipo = item.data("data-tipo");
 
         if (!id || !tipo) {
             console.error("Error: ID o tipo no definido en el item.", item.data());
@@ -71,20 +136,22 @@ $(document).ready(function() {
             return;
         }
 
-        $.post(url, {
-            item_id: id,
-            tipo: tipo,
-            cantidad: cantidad,
-            csrfmiddlewaretoken: csrfToken
-        }).done(function(response) {
-            if (response.redirect) {
-                window.location.href = response.redirect;
-            } else {
+        console.log("Eliminando producto del carrito:", { id, tipo });
+
+        $.ajax({
+            url: "/carrito/eliminar/",
+            type: "POST",
+            headers: { "X-CSRFToken": csrfToken },
+            contentType: "application/json",
+            data: JSON.stringify({ item_id: id, tipo: tipo }),
+            success: function(response) {
+                console.log("Producto eliminado correctamente:", response);
                 location.reload();
+            },
+            error: function(xhr) {
+                console.error("Error al eliminar producto:", xhr.responseText);
+                alert("Error al eliminar producto del carrito");
             }
-        }).fail(function(xhr) {
-            console.error("Error en la operación del carrito:", xhr.responseText);
-            alert("Error en la operación del carrito");
         });
     });
 });

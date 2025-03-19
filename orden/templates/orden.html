@@ -1,0 +1,62 @@
+{% extends 'base_loged.html' %}
+{% load static %}
+
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orden de Compra</title>
+    <link rel="stylesheet" href="{% static 'orden/styles_orden.css' %}">
+</head>
+<body>
+    <div class="orden-container">
+        <h2>Orden de Compra</h2>
+        <div class="orden-info">
+            <p><strong>Cliente:</strong> {{ orden.usuario.username }}</p>
+            <p><strong>Fecha:</strong> {{ orden.fecha_creacion }}</p>
+            <p><strong>Método de Pago:</strong> 
+                {% if orden.metodo_pago == 'E' %} Crédito {% elif orden.metodo_pago == 'T' %} Débito {% else %} N/A {% endif %}
+            </p>            
+            <p><strong>Número de Tarjeta:</strong> **** **** **** {{ orden.numero_tarjeta|slice:"-4:" }}</p>
+        </div>
+
+        <h3>Platos</h3>
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Precio Unitario</th>
+                <th>Total</th>
+            </tr>
+            {% for item in orden.ordenplato_set.all %}
+            <tr>
+                <td>{{ item.plato.nombre }}</td>
+                <td>{{ item.cantidad }}</td>
+                <td>${{ item.plato.precio }}</td>
+                <td>${{ item.cantidad|floatformat:2|add:item.plato.precio }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h3>Bebidas</h3>
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Precio Unitario</th>
+                <th>Total</th>
+            </tr>
+            {% for item in orden.ordenbebida_set.all %}
+            <tr>
+                <td>{{ item.bebida.nombre }}</td>
+                <td>{{ item.cantidad }}</td>
+                <td>${{ item.bebida.precio }}</td>
+                <td>${{ item.cantidad|floatformat:2|add:item.bebida.precio }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h3 class="total">Total Pagado: ${{ orden.monto_total }}</h3>
+    </div>
+</body>
+{% endblock %}

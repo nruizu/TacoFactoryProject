@@ -1,0 +1,43 @@
+.orden-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+h2 {
+    color: #333;
+}
+
+.orden-info {
+    text-align: left;
+    margin-top: 10px;
+}
+
+.orden-info p {
+    margin: 5px 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #333;
+    color: white;
+}
+
+.total {
+    font-weight: bold;
+}

@@ -4,27 +4,35 @@
 {% block content %}
 <link rel="stylesheet" href="{% static 'carrito/styles_carrito.css' %}">
 
+<style>
+    .carrito-item p {
+        color: black !important;
+    }
+</style>
+
 <div class="carrito-container">
     <h2>Tu Carrito</h2>
     <div id="carrito-items">
         {% if platos or bebidas %}
-            {% for item in carrito.platos.all %}
-            <div class="carrito-item" data-id="{{ item.plato.idPlato }}" data-tipo="plato">
+            {% for item in platos %}
+            <div class="carrito-item" data-id="{{ item.plato.id }}" data-tipo="plato">
                 <p>{{ item.plato.nombre }}</p>
                 <p>Cantidad: <span class="cantidad">{{ item.cantidad }}</span></p>
-                <button class="btn-menos">-</button>
-                <button class="btn-mas">+</button>
-                <button class="btn-eliminar">Eliminar</button>
+                <p>Precio: ${{ item.plato.precio }}</p>
+                <button class="btn-menos" onclick="modificarCantidad('{{ item.plato.id }}', 'restar', 'plato')">-</button>
+                <button class="btn-mas" onclick="modificarCantidad('{{ item.plato.id }}', 'sumar', 'plato')">+</button>
+                <button class="btn-eliminar" onclick="eliminarDelCarrito('{{ item.id }}', 'plato')">Eliminar</button>
             </div>
             {% endfor %}
             
-            {% for item in carrito.bebidas.all %}
-            <div class="carrito-item" data-id="{{ item.bebida.idBebida }}" data-tipo="bebida">
+            {% for item in bebidas %}
+            <div class="carrito-item" data-id="{{ item.bebida.id }}" data-tipo="bebida">
                 <p>{{ item.bebida.nombre }}</p>
                 <p>Cantidad: <span class="cantidad">{{ item.cantidad }}</span></p>
-                <button class="btn-menos">-</button>
-                <button class="btn-mas">+</button>
-                <button class="btn-eliminar" data-id="{{ item.plato.idPlato }}" data-tipo="plato">Eliminar</button>
+                <p>Precio: ${{ item.bebida.precio }}</p>
+                <button class="btn-menos" onclick="modificarCantidad('{{ item.bebida.id }}', 'restar', 'bebida')">-</button>
+                <button class="btn-mas" onclick="modificarCantidad('{{ item.bebida.id }}', 'sumar', 'bebida')">+</button>
+                <button class="btn-eliminar" onclick="eliminarDelCarrito('{{ item.id }}', 'bebida')">Eliminar</button>
             </div>
             {% endfor %}
         {% else %}
@@ -33,8 +41,26 @@
             </p>
         {% endif %}
     </div>
+
+    <!-- Subtotal y botón de pago -->
+    <div class="subtotal-container">
+        <p style="color: black; background-color: white; font-weight: bold;">Subtotal: <span id="subtotal" style="color: black; background-color: white; font-weight: bold;">${{ subtotal|default:"0.00" }}</span></p>
+        <form action="{% url 'pago' %}" method="GET">
+            <button id="boton-pago" {% if not platos and not bebidas %}disabled{% endif %}>Proceder al Pago</button>
+        </form>
+    </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="{% static 'carrito/carrito.js' %}"></script>
+<script src="{% static 'menu/carrito.js' %}"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let subtotal = parseFloat("{{ subtotal|default:'0' }}");
+        let botonPago = document.getElementById("boton-pago");
+
+        if (subtotal > 0) {
+            botonPago.removeAttribute("disabled");
+        }
+    });
+</script>
 {% endblock %}
