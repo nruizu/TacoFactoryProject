@@ -1,3 +1,5 @@
+#Autor: Camila Martínez
+
 from django.urls import path
 from .views import platos_view, bebidas_view, buscar_plato, buscar_bebida
 
