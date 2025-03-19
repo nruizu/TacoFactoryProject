@@ -1,3 +1,5 @@
+#Autor: Samuel Gutierrez
+
 from django.db import models
 from menu.models import Plato, Bebida
 from django.conf import settings

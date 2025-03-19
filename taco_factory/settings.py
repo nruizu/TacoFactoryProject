@@ -1,3 +1,5 @@
+#Editado por Samuel Gutierrez
+
 """
 Django settings for taco_factory project.
 

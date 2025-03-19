@@ -1,3 +1,5 @@
+#Autor: Samuel Gutierrez
+
 from django.db import models
 from django.contrib.auth.models import User
 from carrito.models import Plato, Bebida  # Asegúrate de que estas importaciones son correctas

@@ -1,3 +1,5 @@
+#Editado por Samuel Gutierrez
+
 """
 URL configuration for taco_factory project.
 

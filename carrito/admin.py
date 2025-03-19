@@ -1,3 +1,5 @@
+#Autor: Samuel Gutierrez
+
 from django.contrib import admin
 from .models import Carrito
 

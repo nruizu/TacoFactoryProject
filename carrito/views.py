@@ -1,3 +1,5 @@
+#Autor: Samuel Gutierrez
+
 import json
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
