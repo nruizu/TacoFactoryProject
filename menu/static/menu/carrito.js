@@ -2,29 +2,26 @@
 function getCSRFToken() {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
+        document.cookie.split(';').forEach(cookie => {
+            cookie = cookie.trim();
             if (cookie.startsWith('csrftoken=')) {
-                cookieValue = cookie.substring('csrftoken='.length, cookie.length);
-                return cookieValue;
+                cookieValue = cookie.substring('csrftoken='.length);
             }
-        }
+        });
     }
-    console.error("Error: No se encontró el token CSRF en las cookies.");
-    return null;
+    if (!cookieValue) console.error("Error: No se encontró el token CSRF en las cookies.");
+    return cookieValue;
 }
 
 // Función para modificar cantidad de productos en el carrito
 function modificarCantidad(id, accion, tipo) {
-    let cantidad = accion === "sumar" ? 1 : -1;
-    let csrfToken = getCSRFToken();
-
     if (!id || !tipo) {
-        console.error("Error: ID o tipo de producto no definido en modificarCantidad", { id, tipo });
+        console.error("Error: ID o tipo de producto no definido", { id, tipo });
         return;
     }
-
+    let cantidad = accion === "sumar" ? 1 : -1;
+    let csrfToken = getCSRFToken();
+    
     console.log(`Modificando cantidad: ID=${id}, Acción=${accion}, Tipo=${tipo}`);
 
     $.ajax({
@@ -35,7 +32,13 @@ function modificarCantidad(id, accion, tipo) {
         data: JSON.stringify({ item_id: id, tipo: tipo, cantidad: cantidad }),
         success: function(response) {
             console.log("Cantidad actualizada correctamente:", response);
-            location.reload(); // ⚠️ Esto recarga la página, pero podemos mejorarlo si es necesario
+            let cantidadElemento = $(`.carrito-item[data-id="${id}"] .cantidad`);
+            let nuevaCantidad = parseInt(cantidadElemento.text() || "0") + cantidad;
+            if (nuevaCantidad <= 0) {
+                $(`.carrito-item[data-id="${id}"]`).remove();
+            } else {
+                cantidadElemento.text(nuevaCantidad);
+            }
         },
         error: function(xhr) {
             console.error("Error al modificar la cantidad:", xhr.responseText);
@@ -50,23 +53,21 @@ $(document).ready(function() {
     // Agregar producto al carrito
     $(document).on("click", ".btn-agregar-carrito", function(event) {
         event.preventDefault();
-
         let id = $(this).data("idplato") || $(this).data("idbebida");
         let tipo = $(this).data("tipo");
-
-        if (!id || !tipo) {
-            console.error("Error: ID o tipo de producto no definido en el botón agregar.", $(this).data());
-            return;
-        }
-
         let csrfToken = getCSRFToken();
-        if (!csrfToken) {
-            alert("Error: No se pudo obtener el token CSRF. Intenta recargar la página.");
+        
+        if (!id || !tipo) {
+            console.error("Error: ID o tipo no definido en botón agregar.", $(this).data());
             return;
         }
-
+        if (!csrfToken) {
+            alert("Error: No se pudo obtener el token CSRF.");
+            return;
+        }
+        
         console.log("Agregando producto al carrito:", { id, tipo });
-
+        
         $.ajax({
             url: "/carrito/agregar/",
             type: "POST",
@@ -88,16 +89,8 @@ $(document).ready(function() {
     $(document).on("click", ".btn-sumar", function(event) {
         event.preventDefault();
         let item = $(this).closest(".carrito-item");
-        let id = item.data("data-id");
-        let tipo = item.data("data-tipo");
-
-        console.log("Botón sumar presionado:", { id, tipo });
-
-        if (!id || !id.trim() === "") {
-            console.error("Error: ID del producto vacío en botón sumar.", item);
-            return;
-        }
-
+        let id = item.data("id");
+        let tipo = item.data("tipo");
         modificarCantidad(id, "sumar", tipo);
     });
 
@@ -105,16 +98,8 @@ $(document).ready(function() {
     $(document).on("click", ".btn-restar", function(event) {
         event.preventDefault();
         let item = $(this).closest(".carrito-item");
-        let id = item.data("data-id");
-        let tipo = item.data("data-tipo");
-
-        console.log("Botón restar presionado:", { id, tipo });
-
-        if (!id || !id.trim() === "") {
-            console.error("Error: ID del producto vacío en botón restar.", item);
-            return;
-        }
-
+        let id = item.data("id");
+        let tipo = item.data("tipo");
         modificarCantidad(id, "restar", tipo);
     });
 
@@ -122,22 +107,21 @@ $(document).ready(function() {
     $(document).on("click", ".btn-eliminar", function(event) {
         event.preventDefault();
         let item = $(this).closest(".carrito-item");
-        let id = item.data("data-id");
-        let tipo = item.data("data-tipo");
-
+        let id = item.data("id");
+        let tipo = item.data("tipo");
+        let csrfToken = getCSRFToken();
+        
         if (!id || !tipo) {
             console.error("Error: ID o tipo no definido en el item.", item.data());
             return;
         }
-
-        let csrfToken = getCSRFToken();
         if (!csrfToken) {
-            alert("Error: No se pudo obtener el token CSRF. Intenta recargar la página.");
+            alert("Error: No se pudo obtener el token CSRF.");
             return;
         }
-
+        
         console.log("Eliminando producto del carrito:", { id, tipo });
-
+        
         $.ajax({
             url: "/carrito/eliminar/",
             type: "POST",
@@ -146,7 +130,7 @@ $(document).ready(function() {
             data: JSON.stringify({ item_id: id, tipo: tipo }),
             success: function(response) {
                 console.log("Producto eliminado correctamente:", response);
-                location.reload();
+                $(`.carrito-item[data-id="${id}"]`).remove();
             },
             error: function(xhr) {
                 console.error("Error al eliminar producto:", xhr.responseText);

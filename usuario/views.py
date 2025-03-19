@@ -1,3 +1,4 @@
+#Autor: Nicolas Ruiz
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.views.generic import TemplateView

@@ -16,4 +16,4 @@ class DetalleOrdenView(View):
             print("Error: Orden no encontrada")  # Debug
             return redirect('ver_carrito')
 
-        return render(request, 'orden.html', {'orden': orden})  # 🔴 Ruta corregida
+        return render(request, 'orden.html', {'orden': orden})

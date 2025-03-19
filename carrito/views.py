@@ -48,11 +48,12 @@ def agregar_al_carrito(request):
         return JsonResponse({"success": False, "message": "Datos incompletos"}, status=400)
 
     if tipo == "plato":
-        plato = get_object_or_404(Plato, idPlato=item_id)
+        plato = get_object_or_404(Plato, pk=item_id)
         carrito_item, created = CarritoPlato.objects.get_or_create(carrito=carrito, plato=plato)
     elif tipo == "bebida":
-        bebida = get_object_or_404(Bebida, idBebida=item_id)
+        bebida = get_object_or_404(Bebida, pk=item_id)
         carrito_item, created = CarritoBebida.objects.get_or_create(carrito=carrito, bebida=bebida)
+
     else:
         return JsonResponse({"success": False, "message": "Tipo de producto inválido"}, status=400)
 
@@ -77,29 +78,33 @@ def eliminar_del_carrito(request, tipo, item_id):
     item.delete()
     return JsonResponse({"success": True, "message": "Producto eliminado del carrito"})
 
-@login_required
 @csrf_exempt
+@login_required
 def actualizar_cantidad(request):
     if request.method == "POST":
-        tipo = request.POST.get('tipo')
-        item_id = request.POST.get('item_id')
-        cantidad = int(request.POST.get('cantidad', 1))
-        
+        try:
+            data = json.loads(request.body.decode('utf-8'))
+            tipo = data.get("tipo")
+            item_id = data.get("item_id")
+            cantidad = int(data.get("cantidad", 1))
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Formato JSON inválido'}, status=400)
+
         carrito = get_object_or_404(Carrito, usuario=request.user)
-    
+
         if tipo == "plato":
             item = get_object_or_404(CarritoPlato, carrito=carrito, id=item_id)
         elif tipo == "bebida":
             item = get_object_or_404(CarritoBebida, carrito=carrito, id=item_id)
         else:
-            return JsonResponse({'error': 'Tipo invalido'})
-        
+            return JsonResponse({'error': 'Tipo inválido'}, status=400)
+
         item.cantidad = max(1, cantidad)
         item.save()
-        
-        return JsonResponse({"success": True, "nueva cantidad": item.cantidad})
-    
-    return JsonResponse({'error': 'Metodo no permitido'}, status=405)
+
+        return JsonResponse({"success": True, "nueva_cantidad": item.cantidad})
+
+    return JsonResponse({'error': 'Método no permitido'}, status=405)
 
 @login_required
 def vaciar_carrito(request):

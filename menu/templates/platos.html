@@ -29,7 +29,7 @@
                             <h5 class="card-title">{{ plato.nombre }}</h5>
                             <p class="card-text">{{ plato.descripcion }}</p>
                             <p class="fw-bold text-success">Precio: ${{ plato.precio }}</p>
-                            <button class="btn btn-success w-100">Agregar al carrito</button>
+                            <button class="btn btn-success w-100 btn-agregar-carrito" data-idplato="{{ plato.idPlato }}" data-tipo="plato">Agregar al carrito</button>
                         </div>
 
                     </div>
@@ -52,7 +52,7 @@
                             <h5 class="card-title">{{ plato.nombre }}</h5>
                             <p class="card-text">{{ plato.descripcion }}</p>
                             <p class="fw-bold text-success">Precio: ${{ plato.precio }}</p>
-                            <button class="btn btn-success w-100">Agregar al carrito</button>
+                            <button class="btn btn-success w-100 btn-agregar-carrito" data-idplato="{{ plato.idPlato }}" data-tipo="plato">Agregar al carrito</button>
                         </div>
 
                     </div>

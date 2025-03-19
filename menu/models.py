@@ -23,4 +23,4 @@ class Bebida(models.Model):
     imagen = models.ImageField(upload_to='bebida/', blank=True, null=True)
 
     def __str__(self):
-        return self.idBebida, self.nombre
+        return f"{self.idPlato} - {self.nombre}"

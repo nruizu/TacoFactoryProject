@@ -1,3 +1,4 @@
+#Autor: Nicolas Ruiz
 from .models import Pago
 from django import forms
 

@@ -1,83 +1,84 @@
  <!-- Autor: Camila Martínez -->
+<!-- Editado por Samuel Gutierrez -->
 
-{% extends base_template %}
-{% load static %}
+    {% extends base_template %}
+    {% load static %}
 
-{% block title %}Menú de Bebidas{% endblock %}
+    {% block title %}Menú de Bebidas{% endblock %}
 
-{% block content %}
-<div class="container mt-5" style="margin: 20px;">
-    <h1 class="mb-4 text-white">Menú de Bebidas</h1>
+    {% block content %}
+    <div class="container mt-5" style="margin: 20px;">
+        <h1 class="mb-4 text-white">Menú de Bebidas</h1>
 
-    <!-- Barra de búsqueda -->
-    <form method="GET" action="{% url 'bebidas' %}" class="mb-4">
-        <div class="input-group">
-            <input type="text" name="q" class="form-control" placeholder="Buscar una bebida..." value="{{ query }}">
-            <button type="submit" class="btn btn-primary">Buscar</button>
-        </div>
-    </form>
+        <!-- Barra de búsqueda -->
+        <form method="GET" action="{% url 'bebidas' %}" class="mb-4">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Buscar una bebida..." value="{{ query }}">
+                <button type="submit" class="btn btn-primary">Buscar</button>
+            </div>
+        </form>
 
-    <!-- Sección de Gaseosas -->
-    <h2 class="text-white">Gaseosas</h2>
-    <div class="container">
-        <div class="row">
-            {% for bebida in gaseosas %}
-                <div class="col-md-3 mb-4">
-                    <div class="card box">
-                        <img src="{{ bebida.imagen }}" class="card-img-top" alt="{{ bebida.nombre }}">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">{{ bebida.nombre }}</h5>
-                            <p class="card-text">{{ bebida.descripcion }}</p>
-                            <p class="fw-bold text-success">Precio: ${{ bebida.precio }}</p>
-                            <button class="btn btn-success w-100">Agregar al carrito</button>
+        <!-- Sección de Gaseosas -->
+        <h2 class="text-white">Gaseosas</h2>
+        <div class="container">
+            <div class="row">
+                {% for bebida in gaseosas %}
+                    <div class="col-md-3 mb-4">
+                        <div class="card box">
+                            <img src="{{ bebida.imagen }}" class="card-img-top" alt="{{ bebida.nombre }}">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">{{ bebida.nombre }}</h5>
+                                <p class="card-text">{{ bebida.descripcion }}</p>
+                                <p class="fw-bold text-success">Precio: ${{ bebida.precio }}</p>
+                                <button class="btn btn-success w-100 btn-agregar-carrito" data-idbebida="{{ bebida.idBebida }}" data-tipo="bebida">Agregar al carrito</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            {% empty %}
-                <p class="text-white">No se encontraron gaseosas.</p>
-            {% endfor %}
+                {% empty %}
+                    <p class="text-white">No se encontraron gaseosas.</p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Sección de Aguas -->
+        <h2 class="text-white">Aguas</h2>
+        <div class="container">
+            <div class="row">
+                {% for bebida in aguas %}
+                    <div class="col-md-3 mb-4">
+                        <div class="card box">
+                            <img src="{{ bebida.imagen }}" class="card-img-top" alt="{{ bebida.nombre }}">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">{{ bebida.nombre }}</h5>
+                                <p class="card-text">{{ bebida.descripcion }}</p>
+                                <p class="fw-bold text-success">Precio: ${{ bebida.precio }}</p>
+                                <button class="btn btn-success w-100 btn-agregar-carrito" data-idbebida="{{ bebida.idBebida }}" data-tipo="bebida">Agregar al carrito</button>
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p class="text-white">No se encontraron aguas.</p>
+                {% endfor %}
+            </div>
         </div>
     </div>
 
-    <!-- Sección de Aguas -->
-    <h2 class="text-white">Aguas</h2>
-    <div class="container">
-        <div class="row">
-            {% for bebida in aguas %}
-                <div class="col-md-3 mb-4">
-                    <div class="card box">
-                        <img src="{{ bebida.imagen }}" class="card-img-top" alt="{{ bebida.nombre }}">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">{{ bebida.nombre }}</h5>
-                            <p class="card-text">{{ bebida.descripcion }}</p>
-                            <p class="fw-bold text-success">Precio: ${{ bebida.precio }}</p>
-                            <button class="btn btn-success w-100">Agregar al carrito</button>
-                        </div>
-                    </div>
-                </div>
-            {% empty %}
-                <p class="text-white">No se encontraron aguas.</p>
-            {% endfor %}
-        </div>
-    </div>
-</div>
+    <!-- Incluir jQuery y carrito.js -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'menu/carrito.js' %}"></script>
 
-<!-- Incluir jQuery y carrito.js -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="{% static 'menu/carrito.js' %}"></script>
+    <style>
+        .box {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            color: white;
+            margin: 10px;
+        }
 
-<style>
-    .box {
-        background: #1a1a1a;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        color: white;
-        margin: 10px;
-    }
-
-    .container {
-        margin: 20px;
-    }
-</style>
-{% endblock %}
+        .container {
+            margin: 20px;
+        }
+    </style>
+    {% endblock %}
