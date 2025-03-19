@@ -36,7 +36,7 @@ def bebidas_view(request):
 def buscar_plato(request, nombre_plato):
     plato = get_object_or_404(Plato, nombre=nombre_plato)
     
-    return render(request, 'buscar_plato.html', {
+    return render(request, 'platos.html', {
         "title": f"{plato.nombre} - Menú",
         "subtitle": f"Detalles del plato: {plato.descripcion}",
         "plato": plato
@@ -45,7 +45,7 @@ def buscar_plato(request, nombre_plato):
 def buscar_bebida(request, nombre_bebida):
     bebida = get_object_or_404(Bebida, nombre=nombre_bebida)
     
-    return render(request, 'buscar_bebida.html', {
+    return render(request, 'bebidas.html', {
         "title": f"{bebida.nombre} - Menú",
         "subtitle": f"Detalles de la bebida: {bebida.descripcion}",
         "bebida": bebida
