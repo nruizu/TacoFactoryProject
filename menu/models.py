@@ -1,3 +1,5 @@
+#Autor: Camila Martínez
+
 from django.db import models
 
 class Plato(models.Model):
