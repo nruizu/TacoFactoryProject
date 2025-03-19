@@ -67,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'usuario.context_processors.base_template',
             ],
         },
     },
@@ -120,14 +121,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "usuario/static"),
     BASE_DIR / "taco_factory/static", 
     "pago/static", 
     "usuario/static",
+    "menu/static",
 ]
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -137,3 +141,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = "usuario.Usuario"
 
 LOGIN_URL = '/login/'
+
+# Guardar sesiones en la base de datos
+SESSION_ENGINE = "django.contrib.sessions.backends.db"
+
+# Expiración de sesión tras 30 minutos de inactividad
+SESSION_COOKIE_AGE = 1800  # 30 minutos
+
+# Cerrar sesión al cerrar el navegador
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+# Seguridad en cookies de sesión
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SECURE = False  # Cambiar a True en producción con HTTPS

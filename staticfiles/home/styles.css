@@ -1,0 +1,137 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+    background-color: #000;
+    color: #fff;
+}
+
+div, header, nav, ul, li, a, p, h1, h2, img {
+    box-sizing: border-box;
+}
+
+/* --- NAVBAR SECTION --- */
+
+.nav {
+    background-color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 6px 20px;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 0 25px #0009;
+}
+
+.nav__ul {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+}
+
+.nav__item {
+    list-style: none;
+    margin: 0 8px;
+}
+
+.nav__ul-container {
+    flex-grow: 4;
+    text-align: center;
+}
+
+.cart-button i {
+    font-size: 20px;
+}
+.cart-button {
+    color: #a80032;
+}
+
+.nav__link {
+    color: #a80032;
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 10px;
+    border-radius: 0;
+    transition: background-color 0.24s, border-radius 0.2s, outline 0.2s, outline-offset 0.2s;
+    margin: 2px;
+    outline: 0;
+    outline-offset: 0px;
+}
+
+.nav__link:hover {
+    background-color: #daa2b3;
+    border-radius: 20px;
+    outline: 2px solid #d197a8;
+    outline-offset: -7px;
+}
+
+.link--login {
+    background-color: #a80032;
+    color: #fff;
+    border-radius: 20px;
+    padding: 8px 24px;
+    margin-left: 6px;
+}
+
+.link--login:hover {
+    background-color: #a83356;
+}
+
+.link--register {
+    border: 2px solid #a80032;
+    color: #a80032;
+    border-radius: 20px;
+    padding: 6px 22px;
+    margin-left: 6px;
+}
+
+.link--register:hover {
+    background-color: #daa2b3;
+    border-color: #a80032
+}
+
+/* --- HEADER SECTION --- */
+
+.header {
+    min-height: 90vh;
+    box-sizing: border-box;
+    background-image: url('/static/home/header.jpg');
+    background-size: cover;
+    display: flex;
+}
+
+.header__overlay {
+    min-height: 100vh;
+    width: 100%;
+    background-color: #000d;
+    position: fixed;
+    z-index: 1;
+}
+
+.header__item-container {
+    position: relative;
+    z-index: 10;
+    margin: auto;
+    text-align: center;
+    max-width: 700px;
+}
+
+.header__item-container {
+    text-wrap: pretty;
+}
+
+.header__img {
+    min-width: 250px;
+    max-width: 40%;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    margin: 20px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 3.6rem;
+    text-wrap: balance;
+}

@@ -1,0 +1,83 @@
+
+
+/* ----------- Formulario ------------ */
+
+.form-container {
+    width: 40%;
+    height: 50%;
+    justify-content: center;
+    margin: auto;
+    padding: 20px;
+    background-color: #e2d1d1;
+    text-align: center;
+    margin-top: 12%;
+    border: 1px solid #000;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #000; 
+}
+
+.form-dropbox{
+    width: 230px;
+    height: 30px;
+    justify-content: center;
+    margin: auto;
+    margin: 10px;
+    padding: 5px;
+    background-color: #e2dfdf;
+    text-align: center;
+    border: 1px solid #000;
+    border-radius: 7px;
+}
+
+.form-card-number{
+    width: 200px;
+    height: 20px;
+    justify-content: center;
+    margin: auto;
+    margin: 10px;
+    padding: 5px;
+    background-color: #e2dfdf;
+    text-align: center;
+    border: 1px solid #000;
+    border-radius: 7px;
+}
+
+.form-CVV{
+    width: 100px;
+    height: 20px;
+    justify-content: center;
+    margin: auto;
+    margin: 10px;
+    padding: 5px;
+    background-color: #e2dfdf;
+    text-align: center;
+    border: 1px solid #000;
+    border-radius: 7px;
+}
+
+.form-button{
+    width: 60px;
+    height: 30px;
+    margin: 10px;
+    padding: 5px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    background-color: #a80032;
+    text-align: center;
+    border: 1px solid #000;
+    border-radius: 7px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.form-text{
+    color: #000;
+    font-size: 15px;
+}
+
+.form-title{
+    color: #000;
+    font-size: 35px;
+    font-weight: 400;
+    margin: 10px;
+}

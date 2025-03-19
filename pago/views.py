@@ -9,7 +9,7 @@ import datetime
 class PagoView(LoginRequiredMixin, TemplateView):
     template_name = 'pago.html'
     
-    def get(self, request, monto=0):
+    def get(self, request, monto=0,):
         form = PagoForm(request.POST)
         totalPago = monto
         return render(request, self.template_name, {'form': form, 'totalPago' : totalPago})

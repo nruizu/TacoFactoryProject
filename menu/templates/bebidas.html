@@ -1,4 +1,5 @@
-{% extends 'base.html' %}
+{% extends base_template %}
+{% load static %}
 
 {% block title %}Menú de Bebidas{% endblock %}
 
@@ -14,7 +15,7 @@
         </div>
     </form>
 
-    <!-- Mostrar todos los platos -->
+    <!-- Mostrar todas las bebidas -->
     <h2>Gaseosas</h2>
     <div class="row">
         {% for bebida in gaseosas %}
@@ -22,10 +23,9 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">{{ bebida.nombre }}</h5>
-                        <p class="card-text">{{ bebida.iBebida }}</p>
                         <p class="card-text">{{ bebida.descripcion }}</p>
                         <p><strong>Precio:</strong> ${{ bebida.precio }}</p>
-                        <button class="btn btn-success">Agregar al carrito</button>
+                        <button class="btn btn-success btn-agregar-carrito" data-idbebida="{{ bebida.idBebida }}" data-tipo="bebida">Agregar al carrito</button>
                     </div>
                 </div>
             </div>
@@ -40,9 +40,10 @@
             <div class="col-md-4 mb-3">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">{{ bebida.idBebida }}</h5>
+                        <h5 class="card-title">{{ bebida.nombre }}</h5>
                         <p class="card-text">{{ bebida.descripcion }}</p>
                         <p><strong>Precio:</strong> ${{ bebida.precio }}</p>
+                        <button class="btn btn-success btn-agregar-carrito" data-idbebida="{{ bebida.idBebida }}" data-tipo="bebida">Agregar al carrito</button>
                     </div>
                 </div>
             </div>
@@ -51,4 +52,8 @@
         {% endfor %}
     </div>
 </div>
+
+<!-- Incluir jQuery y carrito.js -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static 'menu/carrito.js' %}"></script>
 {% endblock %}

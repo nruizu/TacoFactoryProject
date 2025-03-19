@@ -1,4 +1,5 @@
-{% extends 'base.html' %}
+{% extends base_template %}
+{% load static %}
 
 {% block title %}Menú de Platos{% endblock %}
 
@@ -24,7 +25,7 @@
                         <h5 class="card-title">{{ plato.nombre }}</h5>
                         <p class="card-text">{{ plato.descripcion }}</p>
                         <p><strong>Precio:</strong> ${{ plato.precio }}</p>
-                        <button class="btn btn-success">Agregar al carrito</button>
+                        <button class="btn btn-success btn-agregar-carrito" data-idplato="{{ plato.idPlato }}" data-tipo="plato">Agregar al carrito</button>
                     </div>
                 </div>
             </div>
@@ -42,7 +43,7 @@
                         <h5 class="card-title">{{ plato.nombre }}</h5>
                         <p class="card-text">{{ plato.descripcion }}</p>
                         <p><strong>Precio:</strong> ${{ plato.precio }}</p>
-                        <button class="btn btn-success">{{ plato.idPlato }}</button>
+                        <button class="btn btn-success btn-agregar-carrito" data-idplato="{{ plato.idPlato }}" data-tipo="plato">Agregar al carrito</button>
                     </div>
                 </div>
             </div>
@@ -51,4 +52,8 @@
         {% endfor %}
     </div>
 </div>
+
+<!-- Incluir jQuery y carrito.js -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static 'menu/carrito.js' %}"></script>
 {% endblock %}
