@@ -14,7 +14,7 @@ function getCSRFToken() {
 }
 
 // Función para modificar cantidad de productos en el carrito
-function modificarCantidad(id, accion, tipo) {
+function modificarCantidad(id, accion, tipo, cantidadElemento) {
     if (!id || !tipo) {
         console.error("Error: ID o tipo de producto no definido", { id, tipo });
         return;
@@ -33,7 +33,15 @@ function modificarCantidad(id, accion, tipo) {
         success: function(response) {
             console.log("Cantidad actualizada correctamente:", response);
             let cantidadElemento = $(`.carrito-item[data-id="${id}"] .cantidad`);
-            let nuevaCantidad = parseInt(cantidadElemento.text() || "0") + cantidad;
+            let cantidadActual = parseInt(cantidadElemento.text().trim());
+
+            if (isNaN(cantidadActual)) {
+                console.error("Cantidad actual no es un número válido:", cantidadElemento.text());
+                cantidadActual = 0;
+            }
+
+            let nuevaCantidad = cantidadActual + cantidad;
+
             if (nuevaCantidad <= 0) {
                 $(`.carrito-item[data-id="${id}"]`).remove();
             } else {
@@ -91,7 +99,8 @@ $(document).ready(function() {
         let item = $(this).closest(".carrito-item");
         let id = item.data("id");
         let tipo = item.data("tipo");
-        modificarCantidad(id, "sumar", tipo);
+        let cantidadElemento = item.find(".cantidad");
+        modificarCantidad(id, "sumar", tipo, cantidadElemento);
     });
 
     // Disminuir cantidad
@@ -100,7 +109,8 @@ $(document).ready(function() {
         let item = $(this).closest(".carrito-item");
         let id = item.data("id");
         let tipo = item.data("tipo");
-        modificarCantidad(id, "restar", tipo);
+        let cantidadElemento = item.find(".cantidad");
+        modificarCantidad(id, "restar", tipo, cantidadElemento);
     });
 
     // Eliminar producto

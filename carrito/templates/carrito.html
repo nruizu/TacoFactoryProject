@@ -18,24 +18,24 @@
     <div id="carrito-items">
         {% if platos or bebidas %}
             {% for item in platos %}
-            <div class="carrito-item" data-id="{{ item.plato.id }}" data-tipo="plato">
+            <div class="carrito-item" data-id="{{ item.id }}" data-tipo="plato">
                 <p>{{ item.plato.nombre }}</p>
                 <p>Cantidad: <span class="cantidad">{{ item.cantidad }}</span></p>
                 <p>Precio: ${{ item.plato.precio }}</p>
-                <button class="btn-menos" onclick="modificarCantidad('{{ item.plato.id }}', 'restar', 'plato')">-</button>
-                <button class="btn-mas" onclick="modificarCantidad('{{ item.plato.id }}', 'sumar', 'plato')">+</button>
-                <button class="btn-eliminar" onclick="eliminarDelCarrito('{{ item.id }}', 'plato')">Eliminar</button>
+                <button class="btn-restar">-</button>
+                <button class="btn-sumar">+</button>
+                <button class="btn-eliminar">Eliminar</button>
             </div>
             {% endfor %}
             
             {% for item in bebidas %}
-            <div class="carrito-item" data-id="{{ item.bebida.id }}" data-tipo="bebida">
+            <div class="carrito-item" data-id="{{ item.id }}" data-tipo="bebida">
                 <p>{{ item.bebida.nombre }}</p>
                 <p>Cantidad: <span class="cantidad">{{ item.cantidad }}</span></p>
                 <p>Precio: ${{ item.bebida.precio }}</p>
-                <button class="btn-menos" onclick="modificarCantidad('{{ item.bebida.id }}', 'restar', 'bebida')">-</button>
-                <button class="btn-mas" onclick="modificarCantidad('{{ item.bebida.id }}', 'sumar', 'bebida')">+</button>
-                <button class="btn-eliminar" onclick="eliminarDelCarrito('{{ item.id }}', 'bebida')">Eliminar</button>
+                <button class="btn-restar">-</button>
+                <button class="btn-sumar">+</button>
+                <button class="btn-eliminar">Eliminar</button>
             </div>
             {% endfor %}
         {% else %}
