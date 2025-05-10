@@ -57,11 +57,9 @@ def agregar_al_carrito(request):
     else:
         return JsonResponse({"success": False, "message": "Tipo de producto inválido"}, status=400)
 
-    if created:
-        carrito_item.cantidad = 1
-    else:
+    if not created:
         carrito_item.cantidad += 1
-    carrito_item.save()
+        carrito_item.save()
 
     return JsonResponse({"success": True, "message": "Producto agregado al carrito", "cantidad": carrito_item.cantidad})
 
@@ -91,18 +89,24 @@ def actualizar_cantidad(request):
             return JsonResponse({'error': 'Formato JSON inválido'}, status=400)
 
         carrito = get_object_or_404(Carrito, usuario=request.user)
+        
+        try:
+            if tipo == "plato":
+                item = get_object_or_404(CarritoPlato, carrito=carrito, id=item_id)
+            elif tipo == "bebida":
+                item = get_object_or_404(CarritoBebida, carrito=carrito, id=item_id)
+            else:
+                return JsonResponse({'error': 'Tipo inválido'}, status=400)
+        except (CarritoPlato.DoesNotExist, CarritoBebida.DoesNotExist):
+            return JsonResponse({'error': 'El producto ya no está en el carrito'}, status=404)
 
-        if tipo == "plato":
-            item = get_object_or_404(CarritoPlato, carrito=carrito, id=item_id)
-        elif tipo == "bebida":
-            item = get_object_or_404(CarritoBebida, carrito=carrito, id=item_id)
+        if cantidad <= 0:
+            item.delete()
+            return JsonResponse({"success": True, "nueva_cantidad": 0, "eliminado": True})
         else:
-            return JsonResponse({'error': 'Tipo inválido'}, status=400)
-
-        item.cantidad = max(1, cantidad)
-        item.save()
-
-        return JsonResponse({"success": True, "nueva_cantidad": item.cantidad})
+            item.cantidad = cantidad
+            item.save()
+            return JsonResponse({"success": True, "nueva_cantidad": item.cantidad})
 
     return JsonResponse({'error': 'Método no permitido'}, status=405)
 

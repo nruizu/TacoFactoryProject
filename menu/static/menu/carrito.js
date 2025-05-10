@@ -24,6 +24,9 @@ function modificarCantidad(id, accion, tipo, cantidadElemento) {
     
     console.log(`Modificando cantidad: ID=${id}, Acción=${accion}, Tipo=${tipo}`);
 
+    // Asegurarse de que sea un objeto jQuery
+    let $cantidadElemento = $(cantidadElemento);
+
     $.ajax({
         url: "/carrito/actualizar/",
         type: "POST",
@@ -32,11 +35,10 @@ function modificarCantidad(id, accion, tipo, cantidadElemento) {
         data: JSON.stringify({ item_id: id, tipo: tipo, cantidad: cantidad }),
         success: function(response) {
             console.log("Cantidad actualizada correctamente:", response);
-            let cantidadElemento = $(`.carrito-item[data-id="${id}"] .cantidad`);
-            let cantidadActual = parseInt(cantidadElemento.text().trim());
+            let cantidadActual = parseInt($cantidadElemento.text().trim());
 
             if (isNaN(cantidadActual)) {
-                console.error("Cantidad actual no es un número válido:", cantidadElemento.text());
+                console.error("Cantidad actual no es un número válido:", $cantidadElemento.text());
                 cantidadActual = 0;
             }
 
@@ -45,8 +47,9 @@ function modificarCantidad(id, accion, tipo, cantidadElemento) {
             if (nuevaCantidad <= 0) {
                 $(`.carrito-item[data-id="${id}"]`).remove();
             } else {
-                cantidadElemento.text(nuevaCantidad);
+                $cantidadElemento.text(nuevaCantidad);
             }
+            actualizarSubtotal();
         },
         error: function(xhr) {
             console.error("Error al modificar la cantidad:", xhr.responseText);
@@ -54,6 +57,21 @@ function modificarCantidad(id, accion, tipo, cantidadElemento) {
         }
     });
 }
+
+function actualizarSubtotal() {
+    let subtotal = 0;
+    $(".carrito-item").each(function () {
+        let cantidad = parseInt($(this).find(".cantidad").text().trim());
+        let precioTexto = $(this).find("p:contains('Precio')").text();
+        let precio = parseFloat(precioTexto.replace(/[^0-9.]/g, ''));
+
+        if (!isNaN(cantidad) && !isNaN(precio)) {
+            subtotal += cantidad * precio;
+        }
+    });
+    $("#subtotal").text(`$${subtotal.toFixed(2)}`);
+}
+
 
 $(document).ready(function() {
     console.log("carrito.js cargado correctamente");
