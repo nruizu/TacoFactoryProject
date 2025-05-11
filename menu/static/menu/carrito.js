@@ -19,35 +19,32 @@ function modificarCantidad(id, accion, tipo, cantidadElemento) {
         console.error("Error: ID o tipo de producto no definido", { id, tipo });
         return;
     }
-    let cantidad = accion === "sumar" ? 1 : -1;
-    let csrfToken = getCSRFToken();
-    
-    console.log(`Modificando cantidad: ID=${id}, Acción=${accion}, Tipo=${tipo}`);
 
-    // Asegurarse de que sea un objeto jQuery
+    let csrfToken = getCSRFToken();
     let $cantidadElemento = $(cantidadElemento);
+    let cantidadActual = parseInt($cantidadElemento.text().trim());
+
+    if (isNaN(cantidadActual)) {
+        console.error("Cantidad actual no es un número válido:", $cantidadElemento.text());
+        cantidadActual = 1;
+    }
+
+    let nuevaCantidad = accion === "sumar" ? cantidadActual + 1 : cantidadActual - 1;
+
+    console.log(`Enviando cantidad: ${nuevaCantidad} (accion=${accion})`);
 
     $.ajax({
         url: "/carrito/actualizar/",
         type: "POST",
         headers: { "X-CSRFToken": csrfToken },
         contentType: "application/json",
-        data: JSON.stringify({ item_id: id, tipo: tipo, cantidad: cantidad }),
+        data: JSON.stringify({ item_id: id, tipo: tipo, cantidad: nuevaCantidad }),
         success: function(response) {
             console.log("Cantidad actualizada correctamente:", response);
-            let cantidadActual = parseInt($cantidadElemento.text().trim());
-
-            if (isNaN(cantidadActual)) {
-                console.error("Cantidad actual no es un número válido:", $cantidadElemento.text());
-                cantidadActual = 0;
-            }
-
-            let nuevaCantidad = cantidadActual + cantidad;
-
-            if (nuevaCantidad <= 0) {
+            if (response.eliminado) {
                 $(`.carrito-item[data-id="${id}"]`).remove();
             } else {
-                $cantidadElemento.text(nuevaCantidad);
+                $cantidadElemento.text(response.nueva_cantidad);
             }
             actualizarSubtotal();
         },
@@ -99,7 +96,7 @@ $(document).ready(function() {
             type: "POST",
             headers: { "X-CSRFToken": csrfToken },
             contentType: "application/json",
-            data: JSON.stringify({ item_id: id, tipo: tipo }),
+            data: JSON.stringify({ item_id: id, tipo: tipo, cantidad: 1 }),
             success: function(response) {
                 console.log("Producto agregado:", response);
                 alert("Producto agregado al carrito");
