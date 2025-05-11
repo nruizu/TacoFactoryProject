@@ -8,6 +8,14 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
+def calcular_y_guardar_subtotal(request, carrito):
+    platos = CarritoPlato.objects.filter(carrito=carrito)
+    bebidas = CarritoBebida.objects.filter(carrito=carrito)
+    subtotal = sum(item.plato.precio * item.cantidad for item in platos) + \
+               sum(item.bebida.precio * item.cantidad for item in bebidas)
+    request.session['monto'] = subtotal
+    return subtotal
+
 @login_required
 def ver_carrito(request):
     carrito, _ = Carrito.objects.get_or_create(usuario=request.user)
@@ -15,11 +23,7 @@ def ver_carrito(request):
     bebidas = CarritoBebida.objects.filter(carrito=carrito)
 
     # Calcular el subtotal
-    subtotal = sum(item.plato.precio * item.cantidad for item in platos) + \
-               sum(item.bebida.precio * item.cantidad for item in bebidas)
-
-    # Guardar el subtotal en la sesión
-    request.session['monto'] = subtotal
+    subtotal = calcular_y_guardar_subtotal(request, carrito)
 
     context = {
         'carrito': carrito,
@@ -61,7 +65,14 @@ def agregar_al_carrito(request):
         carrito_item.cantidad += 1
         carrito_item.save()
 
-    return JsonResponse({"success": True, "message": "Producto agregado al carrito", "cantidad": carrito_item.cantidad})
+    subtotal = calcular_y_guardar_subtotal(request, carrito)
+
+    return JsonResponse({
+        "success": True,
+        "message": "Producto agregado al carrito",
+        "cantidad": carrito_item.cantidad,
+        "subtotal": subtotal
+    })
 
 @login_required
 def eliminar_del_carrito(request, tipo, item_id):
@@ -74,6 +85,8 @@ def eliminar_del_carrito(request, tipo, item_id):
         item = get_object_or_404(CarritoBebida, carrito=carrito, id=item_id)
         
     item.delete()
+    calcular_y_guardar_subtotal(request, carrito)
+    
     return JsonResponse({"success": True, "message": "Producto eliminado del carrito"})
 
 @csrf_exempt
@@ -102,11 +115,22 @@ def actualizar_cantidad(request):
 
         if cantidad <= 0:
             item.delete()
-            return JsonResponse({"success": True, "nueva_cantidad": 0, "eliminado": True})
+            eliminado = True
+            nueva_cantidad = 0
         else:
             item.cantidad = cantidad
             item.save()
-            return JsonResponse({"success": True, "nueva_cantidad": item.cantidad})
+            eliminado = False
+            nueva_cantidad = item.cantidad
+            
+        subtotal = calcular_y_guardar_subtotal(request, carrito)
+        
+        return JsonResponse({
+            "success": True,
+            "nueva_cantidad": nueva_cantidad,
+            "eliminado": eliminado,
+            "subtotal": subtotal
+        })
 
     return JsonResponse({'error': 'Método no permitido'}, status=405)
 
@@ -116,11 +140,13 @@ def vaciar_carrito(request):
     CarritoPlato.objects.filter(carrito=carrito).delete()
     CarritoBebida.objects.filter(carrito=carrito).delete()
     
+    calcular_y_guardar_subtotal(request, carrito)
     return redirect('ver_carrito')
 
 @login_required
 def proceder_pago(request):
-    monto = request.session.get('monto', 0)  # Obtener el monto de la sesión
+    carrito = get_object_or_404(Carrito, usuario=request.user)
+    monto = calcular_y_guardar_subtotal(request, carrito)
     
     if monto <= 0:
         return redirect('ver_carrito')  # Evitar pagos sin monto válido
