@@ -2,24 +2,74 @@
 
 {% extends 'base_loged.html' %}
 {% load static %}
+{% load tz %}  <!-- Necesario para timezone localtime -->
+{% load humanize %}
 
 {% block content %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orden de Compra</title>
-    <link rel="stylesheet" href="{% static 'orden/styles_orden.css' %}">
+    <style>
+        body {
+            color: black;
+        }
+        .orden-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .orden-info {
+            text-align: left;
+            margin-top: 10px;
+        }
+
+        .orden-info p {
+            margin: 5px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+            color: black;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+        }
+
+        .total {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
 </head>
+
 <body>
     <div class="orden-container">
         <h2>Orden de Compra</h2>
         <div class="orden-info">
             <p><strong>Cliente:</strong> {{ orden.usuario.username }}</p>
-            <p><strong>Fecha:</strong> {{ orden.fecha_creacion }}</p>
-            <p><strong>Método de Pago:</strong> 
-                {% if orden.metodo_pago == 'E' %} Crédito {% elif orden.metodo_pago == 'T' %} Débito {% else %} N/A {% endif %}
-            </p>            
-            <p><strong>Número de Tarjeta:</strong> **** **** **** {{ orden.numero_tarjeta|slice:"-4:" }}</p>
+            <p><strong>Fecha:</strong> {% localtime on %}{{ orden.fecha_creacion|date:"F j, Y, g:i a" }}{% endlocaltime %}</p>
+            <p><strong>Método de Pago:</strong> {{ orden.get_metodo_pago_display }}</p>
+            <p><strong>Número de Tarjeta:</strong> {{ orden.numero_tarjeta }}</p>
         </div>
 
         <h3>Platos</h3>
@@ -34,8 +84,8 @@
             <tr>
                 <td>{{ item.plato.nombre }}</td>
                 <td>{{ item.cantidad }}</td>
-                <td>${{ item.plato.precio }}</td>
-                <td>${{ item.cantidad|floatformat:2|add:item.plato.precio }}</td>
+                <td>${{ item.plato.precio|floatformat:2 }}</td>
+                <td>${{ item.total|floatformat:2 }}</td>
             </tr>
             {% endfor %}
         </table>
@@ -52,8 +102,8 @@
             <tr>
                 <td>{{ item.bebida.nombre }}</td>
                 <td>{{ item.cantidad }}</td>
-                <td>${{ item.bebida.precio }}</td>
-                <td>${{ item.cantidad|floatformat:2|add:item.bebida.precio }}</td>
+                <td>${{ item.bebida.precio|floatformat:2 }}</td>
+                <td>${{ item.total|floatformat:2 }}</td>
             </tr>
             {% endfor %}
         </table>

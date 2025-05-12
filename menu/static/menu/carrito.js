@@ -148,14 +148,13 @@ $(document).ready(function() {
         console.log("Eliminando producto del carrito:", { id, tipo });
         
         $.ajax({
-            url: "/carrito/eliminar/",
+            url: `/carrito/eliminar/${tipo}/${id}/`,  // URL corregida con los datos en la ruta
             type: "POST",
             headers: { "X-CSRFToken": csrfToken },
-            contentType: "application/json",
-            data: JSON.stringify({ item_id: id, tipo: tipo }),
             success: function(response) {
                 console.log("Producto eliminado correctamente:", response);
                 $(`.carrito-item[data-id="${id}"]`).remove();
+                actualizarSubtotal();
             },
             error: function(xhr) {
                 console.error("Error al eliminar producto:", xhr.responseText);

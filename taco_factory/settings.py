@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'pago',
     'usuario',
     'carrito',
@@ -115,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Bogota'
 
 USE_I18N = True
 
@@ -160,3 +161,6 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 # Seguridad en cookies de sesión
 SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SECURE = False  # Cambiar a True en producción con HTTPS
+
+TIME_ZONE = 'America/Bogota'
+USE_TZ = True

@@ -24,7 +24,11 @@ class PagoView(LoginRequiredMixin, TemplateView):
         form = PagoForm(request.POST)
 
         if form.is_valid():
-            form.save()
+            pago = form.save(commit=False)  # Evita guardar aún
+            pago.monto = monto              # Asigna el monto manualmente
+            pago.usuario = request.user     # Asegúrate también de asignar el usuario si aplica
+            pago.save()                     # Ahora sí guarda
+
             print("✅ Pago exitoso")
             usuario = request.user
             metodo_pago = form.cleaned_data['metodoPago']
@@ -67,7 +71,8 @@ class PagoView(LoginRequiredMixin, TemplateView):
 
             # Redirigir a la vista de detalle de la orden
             return redirect(reverse('detalle_orden', kwargs={'orden_id': orden.id}))
-        
+    
         else:
             print("❌ Error en el formulario:", form.errors)
         return render(request, self.template_name, {'form': form, 'totalPago': monto})
+

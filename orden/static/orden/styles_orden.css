@@ -43,3 +43,10 @@ th {
 .total {
     font-weight: bold;
 }
+
+body {
+    color: black;
+}
+td {
+    color: black;
+}
