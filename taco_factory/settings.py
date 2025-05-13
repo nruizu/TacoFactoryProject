@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     #third party apps
     'rest_framework',
+    'aliados',
 ]
 
 MIDDLEWARE = [

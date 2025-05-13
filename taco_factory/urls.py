@@ -29,6 +29,7 @@ urlpatterns = [
     path('carrito/', include('carrito.urls')),
     path('orden/', include('orden.urls')),
     path('api/', include('api.urls')),
+    path('productos-aliados/', include('aliados.urls')),
     ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 
 
 if settings.DEBUG:

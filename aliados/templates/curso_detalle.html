@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detalle del Curso</title>
+</head>
+<body>
+    {% if curso %}
+        <h1>{{ curso.title }}</h1>
+        <p><strong>Descripción:</strong> {{ curso.description }}</p>
+        <p><strong>Categoría:</strong> {{ curso.category }}</p>
+        <p><strong>Dificultad:</strong> {{ curso.difficulty }}</p>
+        <p><strong>Duración estimada:</strong> {{ curso.estimated_duration }} horas</p>
+        <p><strong>Precio:</strong> ${{ curso.price }}</p>
+        <p><strong>Instructor:</strong> {{ curso.instructor.first_name }} {{ curso.instructor.last_name }}</p>
+    {% else %}
+        <p>No se pudo cargar el curso.</p>
+    {% endif %}
+    <a href="{% url 'productos_aliados' %}">Volver a la lista</a>
+</body>
+</html>
