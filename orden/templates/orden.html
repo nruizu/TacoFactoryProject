@@ -109,6 +109,16 @@
         </table>
 
         <h3 class="total">Total Pagado: ${{ orden.monto_total }}</h3>
+
+        <form action="{% url 'descargar_orden' orden.id %}" method="get">
+            <label>Descargar Orden:</label>
+            <select name="formato" id="formato">
+                <option value="txt">TXT</option>
+                <option value="json">JSON</option>
+            </select>
+            <button type="submit">Descargar</button>
+        </form>
+        
     </div>
 </body>
 {% endblock %}
