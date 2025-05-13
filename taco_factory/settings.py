@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     'carrito',
     'menu',
     'orden',
+    'api.apps.ApiConfig',
+    #third party apps
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
