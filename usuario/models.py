@@ -10,7 +10,6 @@ class Usuario(AbstractUser):
     celular = models.CharField(max_length=10)
     direccion = models.CharField(max_length=100)
 
-    # Definir el correo como el campo de login principal
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["numDocumento", "username"]
 

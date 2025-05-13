@@ -6,11 +6,9 @@
     <div id="map" style="height: 500px; width: 100%; margin-top: 20px;"></div>
 </div>
 
-<!-- CSS Leaflet sin integrity -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     crossorigin=""/>
 
-<!-- JS Leaflet sin integrity -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     crossorigin=""></script>
 
@@ -26,12 +24,11 @@
         attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
-    // Icono personalizado (puedes usar una imagen tuya o una de internet)
     const tacoIcon = L.icon({
-        iconUrl: 'https://cdn-icons-png.flaticon.com/128/8688/8688563.png', // ícono estilo taco
-        iconSize: [38, 38], // tamaño del icono
-        iconAnchor: [19, 38], // punto del icono que se alinea con la ubicación
-        popupAnchor: [0, -38] // punto desde el cual se abre el popup respecto al icono
+        iconUrl: 'https://cdn-icons-png.flaticon.com/128/8688/8688563.png',
+        iconSize: [38, 38],
+        iconAnchor: [19, 38],
+        popupAnchor: [0, -38]
     });
 
     locations.forEach(loc => {

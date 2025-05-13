@@ -29,7 +29,7 @@ def ver_carrito(request):
         'carrito': carrito,
         'platos': platos,
         'bebidas': bebidas,
-        'subtotal': subtotal,  # Pasar subtotal al template
+        'subtotal': subtotal,
     }
 
     return render(request, 'carrito.html', context)
@@ -42,7 +42,7 @@ def agregar_al_carrito(request):
     carrito, _ = Carrito.objects.get_or_create(usuario=request.user)
 
     try:
-        data = json.loads(request.body.decode('utf-8'))  # Intentar obtener JSON
+        data = json.loads(request.body.decode('utf-8'))
         tipo = data.get("tipo")
         item_id = data.get("item_id")
     except json.JSONDecodeError:
@@ -149,6 +149,6 @@ def proceder_pago(request):
     monto = calcular_y_guardar_subtotal(request, carrito)
     
     if monto <= 0:
-        return redirect('ver_carrito')  # Evitar pagos sin monto válido
+        return redirect('ver_carrito')
 
-    return redirect(reverse('pago'))  # Redirigir a la página de pago
+    return redirect(reverse('pago'))

@@ -2,7 +2,7 @@
 
 from django.db import models
 from django.contrib.auth.models import User
-from carrito.models import Plato, Bebida  # Asegúrate de que estas importaciones son correctas
+from carrito.models import Plato, Bebida
 from django.conf import settings
 
 class Orden(models.Model):

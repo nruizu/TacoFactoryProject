@@ -12,7 +12,7 @@ from django.http import HttpResponse
 class HomeView(TemplateView):
     def get(self, request):
         if self.request.user.is_authenticated:
-            return render(request, "home/index_loged.html")  # Plantilla para usuarios autenticados
+            return render(request, "home/index_loged.html")
         return render(request, "home/index.html")
 
 def registro(request):
@@ -20,8 +20,8 @@ def registro(request):
         form = RegistroForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)  # Inicia sesión después del registro
-            return redirect("home")  # Redirige a la página principal
+            login(request, user)
+            return redirect("home")
         else:
             print(form.errors.as_data())
     else:

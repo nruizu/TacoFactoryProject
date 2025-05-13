@@ -24,10 +24,10 @@ class PagoView(LoginRequiredMixin, TemplateView):
         form = PagoForm(request.POST)
 
         if form.is_valid():
-            pago = form.save(commit=False)  # Evita guardar aún
-            pago.monto = monto              # Asigna el monto manualmente
-            pago.usuario = request.user     # Asegúrate también de asignar el usuario si aplica
-            pago.save()                     # Ahora sí guarda
+            pago = form.save(commit=False)
+            pago.monto = monto
+            pago.usuario = request.user
+            pago.save()                     
 
             print("✅ Pago exitoso")
             usuario = request.user
@@ -75,4 +75,3 @@ class PagoView(LoginRequiredMixin, TemplateView):
         else:
             print("❌ Error en el formulario:", form.errors)
         return render(request, self.template_name, {'form': form, 'totalPago': monto})
-

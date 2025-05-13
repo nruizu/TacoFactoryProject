@@ -10,11 +10,11 @@ from orden.utils import DownloadProvider
 class DetalleOrdenView(View):
     @method_decorator(login_required)
     def get(self, request, orden_id, *args, **kwargs):
-        print(f"Mostrando orden con ID: {orden_id}")  # Debug
+        print(f"Mostrando orden con ID: {orden_id}")
         try:
             orden = Orden.objects.get(id=orden_id, usuario=request.user)
         except Orden.DoesNotExist:
-            print("Error: Orden no encontrada")  # Debug
+            print("Error: Orden no encontrada")
             return redirect('ver_carrito')
 
         return render(request, 'orden.html', {'orden': orden})
