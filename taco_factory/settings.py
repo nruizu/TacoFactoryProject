@@ -62,7 +62,7 @@ ROOT_URLCONF = 'taco_factory.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "taco_factory/templates", BASE_DIR / "menu/templates"],
+        'DIRS': [BASE_DIR / "taco_factory/templates", BASE_DIR / "menu/templates", BASE_DIR / "usuario/templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

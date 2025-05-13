@@ -4,6 +4,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.views.generic import TemplateView
 from django.shortcuts import render, redirect
 from .form import RegistroForm, LoginForm
+from django.http import HttpResponse
+
 
 # Create your views here.
 
@@ -45,3 +47,6 @@ def iniciar_sesion(request):
 def cerrar_sesion(request):
     logout(request)
     return redirect("home")
+
+def puntos_fisicos(request):
+    return render(request, 'mapa/puntos_fisicos.html')

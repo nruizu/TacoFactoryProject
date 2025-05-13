@@ -1,0 +1,43 @@
+{% extends base_template %}
+{% load static %}
+{% block content %}
+<div style="padding: 20px;">
+    <h2 style="text-align:center; color: #a80032;">Nuestras Sedes</h2>
+    <div id="map" style="height: 500px; width: 100%; margin-top: 20px;"></div>
+</div>
+
+<!-- CSS Leaflet sin integrity -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    crossorigin=""/>
+
+<!-- JS Leaflet sin integrity -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    crossorigin=""></script>
+
+<script>
+    const locations = [
+        { lat: 6.199661256596724, lng: -75.57842095767269, label: "Sede Universidad EAFIT<br>Carrera 49 N° 7 Sur - 50" },
+        { lat: 6.244166595224489, lng: -75.58892011446495, label: "Sede Universidad Pontificia Bolivariana<br>Cq. 1 #70-01" }
+    ];
+
+    const map = L.map('map').setView([6.222, -75.584], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Icono personalizado (puedes usar una imagen tuya o una de internet)
+    const tacoIcon = L.icon({
+        iconUrl: 'https://cdn-icons-png.flaticon.com/128/8688/8688563.png', // ícono estilo taco
+        iconSize: [38, 38], // tamaño del icono
+        iconAnchor: [19, 38], // punto del icono que se alinea con la ubicación
+        popupAnchor: [0, -38] // punto desde el cual se abre el popup respecto al icono
+    });
+
+    locations.forEach(loc => {
+        L.marker([loc.lat, loc.lng], { icon: tacoIcon })
+            .addTo(map)
+            .bindPopup("<b>" + loc.label.split('<br>')[0] + "</b><br>" + loc.label.split('<br>')[1]);
+    });
+</script>
+{% endblock %}
