@@ -59,8 +59,8 @@ function actualizarSubtotal() {
     let subtotal = 0;
     $(".carrito-item").each(function () {
         let cantidad = parseInt($(this).find(".cantidad").text().trim());
-        let precioTexto = $(this).find("p:contains('Precio')").text();
-        let precio = parseFloat(precioTexto.replace(/[^0-9.]/g, ''));
+        let precio = parseFloat($(this).data("precio"));
+
 
         if (!isNaN(cantidad) && !isNaN(precio)) {
             subtotal += cantidad * precio;

@@ -19,7 +19,7 @@
     <div id="carrito-items">
         {% if platos or bebidas %}
             {% for item in platos %}
-            <div class="carrito-item" data-id="{{ item.id }}" data-tipo="plato">
+            <div class="carrito-item" data-id="{{ item.id }}" data-tipo="plato" data-precio="{{ item.plato.precio }}">
                 <p>{{ item.plato.nombre }}</p>
                 <p>{% trans "Cantidad:" %} <span class="cantidad">{{ item.cantidad }}</span></p>
                 <p>{% trans "Precio:" %} ${{ item.plato.precio }}</p>
@@ -30,7 +30,7 @@
             {% endfor %}
             
             {% for item in bebidas %}
-            <div class="carrito-item" data-id="{{ item.id }}" data-tipo="bebida">
+            <div class="carrito-item" data-id="{{ item.id }}" data-tipo="bebida" data-precio="{{ item.bebida.precio }}">
                 <p>{{ item.bebida.nombre }}</p>
                 <p>{% trans "Cantidad:" %} <span class="cantidad">{{ item.cantidad }}</span></p>
                 <p>{% trans "Precio:" %} ${{ item.bebida.precio }}</p>
