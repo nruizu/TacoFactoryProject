@@ -15,4 +15,4 @@ RUN pip install --upgrade pip \
 EXPOSE 5000
 
 # Comando por defecto para ejecutar la app (modo desarrollo)
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:5000"]
