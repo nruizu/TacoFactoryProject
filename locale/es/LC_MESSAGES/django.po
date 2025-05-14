@@ -1,0 +1,353 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: es\n"
+
+# MENÚ - BEBIDAS
+msgid "Menú de Bebidas"
+msgstr "Menú de Bebidas"
+
+msgid "Buscar una bebida..."
+msgstr "Buscar una bebida..."
+
+msgid "Buscar"
+msgstr "Buscar"
+
+msgid "Gaseosas"
+msgstr "Gaseosas"
+
+msgid "No se encontraron gaseosas."
+msgstr "No se encontraron gaseosas."
+
+msgid "Aguas"
+msgstr "Aguas"
+
+msgid "No se encontraron aguas."
+msgstr "No se encontraron aguas."
+
+msgid "Agregar al carrito"
+msgstr "Agregar al carrito"
+
+msgid "Menú de Platos"
+msgstr "Menú de Platos"
+
+msgid "Buscar un plato..."
+msgstr "Buscar un plato..."
+
+msgid "Plato Fuerte"
+msgstr "Plato Fuerte"
+
+msgid "No se encontraron platos fuertes."
+msgstr "No se encontraron platos fuertes."
+
+msgid "Combos"
+msgstr "Combos"
+
+msgid "No se encontraron combos."
+msgstr "No se encontraron combos."
+
+# ALIADOS
+msgid "Detalle del Curso"
+msgstr "Detalle del Curso"
+
+msgid "Descripción"
+msgstr "Descripción"
+
+msgid "Categoría"
+msgstr "Categoría"
+
+msgid "Dificultad"
+msgstr "Dificultad"
+
+msgid "Duración estimada"
+msgstr "Duración estimada"
+
+msgid "horas"
+msgstr "horas"
+
+msgid "Precio"
+msgstr "Precio"
+
+msgid "Instructor"
+msgstr "Instructor"
+
+msgid "No se pudo cargar el curso."
+msgstr "No se pudo cargar el curso."
+
+msgid "Volver a la lista"
+msgstr "Volver a la lista"
+
+msgid "Productos de aliados (Cursos)"
+msgstr "Productos de aliados (Cursos)"
+
+msgid "Buscar cursos"
+msgstr "Buscar cursos"
+
+msgid "No se pudo obtener la información de los productos aliados."
+msgstr "No se pudo obtener la información de los productos aliados."
+
+# CARRITO
+msgid "Tu Carrito"
+msgstr "Tu Carrito"
+
+msgid "Cantidad:"
+msgstr "Cantidad:"
+
+msgid "Precio:"
+msgstr "Precio:"
+
+msgid "Eliminar"
+msgstr "Eliminar"
+
+msgid "Tu carrito está vacío. ¡Agrega algunos productos!"
+msgstr "Tu carrito está vacío. ¡Agrega algunos productos!"
+
+msgid "Subtotal:"
+msgstr "Subtotal:"
+
+msgid "Proceder al Pago"
+msgstr "Proceder al Pago"
+
+msgid "+"
+msgstr "+"
+
+msgid "-"
+msgstr "-"
+
+# ORDEN
+msgid "Orden de Compra"
+msgstr "Orden de Compra"
+
+msgid "Cliente:"
+msgstr "Cliente:"
+
+msgid "Fecha:"
+msgstr "Fecha:"
+
+msgid "Método de Pago:"
+msgstr "Método de Pago:"
+
+msgid "Número de Tarjeta:"
+msgstr "Número de Tarjeta:"
+
+msgid "Platos"
+msgstr "Platos"
+
+msgid "Nombre"
+msgstr "Nombre"
+
+msgid "Cantidad"
+msgstr "Cantidad"
+
+msgid "Precio Unitario"
+msgstr "Precio Unitario"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Bebidas"
+msgstr "Bebidas"
+
+msgid "Total Pagado:"
+msgstr "Total Pagado:"
+
+msgid "Descargar Orden:"
+msgstr "Descargar Orden:"
+
+msgid "TXT"
+msgstr "TXT"
+
+msgid "JSON"
+msgstr "JSON"
+
+msgid "Descargar"
+msgstr "Descargar"
+
+# PAGO
+msgid "Pago"
+msgstr "Pago"
+
+msgid "Pasarela de Pago"
+msgstr "Pasarela de Pago"
+
+msgid "Método de pago:"
+msgstr "Método de pago:"
+
+msgid "Número de Seguridad:"
+msgstr "Número de Seguridad:"
+
+msgid "Fecha de Vencimiento:"
+msgstr "Fecha de Vencimiento:"
+
+msgid "Total a pagar:"
+msgstr "Total a pagar:"
+
+msgid "Pagar"
+msgstr "Pagar"
+
+# TACO
+msgid "Home"
+msgstr "Inicio"
+
+msgid "Puntos Fisicos"
+msgstr "Puntos Fisicos"
+
+msgid "Cerrar Sesion"
+msgstr "Cerrar Sesion"
+
+# USER - LOGIN Y REGISTRO
+msgid "Inicio de Sesion"
+msgstr "Inicio de Sesion"
+
+msgid "Inicia Sesión"
+msgstr "Inicia Sesión"
+
+msgid "Correo"
+msgstr "Correo"
+
+msgid "Contraseña"
+msgstr "Contraseña"
+
+msgid "Eres nuevo?"
+msgstr "¿Eres nuevo?"
+
+msgid "Regístrate"
+msgstr "Regístrate"
+
+msgid "Iniciar Sesión"
+msgstr "Iniciar Sesión"
+
+msgid "Registro"
+msgstr "Registro"
+
+msgid "Nombre de usuario"
+msgstr "Nombre de usuario"
+
+msgid "Numero de documento"
+msgstr "Número de documento"
+
+msgid "Numero de celular"
+msgstr "Número de celular"
+
+msgid "Direccion"
+msgstr "Dirección"
+
+msgid "Confirmar contraseña"
+msgstr "Confirmar contraseña"
+
+msgid "Ya tienes una cuenta?"
+msgstr "¿Ya tienes una cuenta?"
+
+msgid "Registrarse"
+msgstr "Registrarse"
+
+msgid "Nuestras sedes"
+msgstr "Nuestras sedes"
+
+msgid "Flauta de Queso"
+msgstr "Flauta de Queso"
+
+msgid "Flauta de tortilla de harina con queso mozzarella, guacamole, sour cream y salsa a elegir."
+msgstr "Flauta de tortilla de harina con queso mozzarella, guacamole, sour cream y salsa a elegir."
+
+msgid "Taco"
+msgstr "Taco"
+
+msgid "Taco con vegetales de temporada, proteína y salsa a elegir."
+msgstr "Taco con vegetales de temporada, proteína y salsa a elegir."
+
+msgid "Sopa de Tomate"
+msgstr "Sopa de Tomate"
+
+msgid "Sopa de tomate fresco con queso, nachos y proteína a elegir."
+msgstr "Sopa de tomate fresco con queso, nachos y proteína a elegir."
+
+msgid "Nachos Sencillos"
+msgstr "Nachos Sencillos"
+
+msgid "Porción de nachos acompañados de 2 salsas a elegir."
+msgstr "Porción de nachos acompañados de 2 salsas a elegir."
+
+msgid "Burrito Junior"
+msgstr "Burrito Junior"
+
+msgid "Burrito con arroz, frijoles, vegetales, queso, proteína y salsa a elegir."
+msgstr "Burrito con arroz, frijoles, vegetales, queso, proteína y salsa a elegir."
+
+msgid "Burrito Mixto 2 Proteinas"
+msgstr "Burrito Mixto 2 Proteínas"
+
+msgid "Burrito con arroz, frijoles, vegetales de temporada, queso, 2 proteínas y salsa a elegir."
+msgstr "Burrito con arroz, frijoles, vegetales de temporada, queso, 2 proteínas y salsa a elegir."
+
+msgid "Combo Burrito"
+msgstr "Combo Burrito"
+
+msgid "Burrito con arroz al limon y cilantro , frijol, vegetales salteados, queso, maíz tierno, maduro, 1 proteína, salsas de la casa y bebida a elegir."
+msgstr "Burrito con arroz al limón y cilantro, frijol, vegetales salteados, queso, maíz tierno, maduro, 1 proteína, salsas de la casa y bebida a elegir."
+
+msgid "Combo Quesadilla"
+msgstr "Combo Quesadilla"
+
+msgid "Quesadilla con 1 proteína, queso mozarella, maíz o maduro, guacamole y sour cream, 1 salsa de la casa y bebida a elegir."
+msgstr "Quesadilla con 1 proteína, queso mozzarella, maíz o maduro, guacamole y sour cream, 1 salsa de la casa y bebida a elegir."
+
+msgid "Combo Ensalada Mexicana"
+msgstr "Combo Ensalada Mexicana"
+
+msgid "Ensalada mexicana con guacamole, pico de gallo, vegetales salteados, lechuga, 1 proteína, jalapeños, maíz, queso mozarella, maduro, salsa de la casa y bebida a elegir."
+msgstr "Ensalada mexicana con guacamole, pico de gallo, vegetales salteados, lechuga, 1 proteína, jalapeños, maíz, queso mozzarella, maduro, salsa de la casa y bebida a elegir."
+
+msgid "Combo Molde de Papas"
+msgstr "Combo Molde de Papas"
+
+msgid "Papa a la francesa gratinadas con queso mozzarella, pico de gallo, guacamole, mayonesa ranchera, proteína, salsa de la casa y bebida a elegir."
+msgstr "Papa a la francesa gratinada con queso mozzarella, pico de gallo, guacamole, mayonesa ranchera, proteína, salsa de la casa y bebida a elegir."
+
+msgid "Combo tres Tacos"
+msgstr "Combo Tres Tacos"
+
+msgid "3 tacos con proteína a elegir, lechuga, guacamole, pico de gallo, maduro o maíz, sour cream, queso y salsa de la casa a elegir."
+msgstr "3 tacos con proteína a elegir, lechuga, guacamole, pico de gallo, maduro o maíz, sour cream, queso y salsa de la casa a elegir."
+
+msgid "Combo Nachos Gratinados"
+msgstr "Combo Nachos Gratinados"
+
+msgid "Nachos de maíz sobre base de queso, 1 proteína, gratinado con queso mozzarella, pico de gallo, guacamole y bebida a elegir."
+msgstr "Nachos de maíz sobre base de queso, 1 proteína, gratinado con queso mozzarella, pico de gallo, guacamole y bebida a elegir."
+
+msgid "Combo Fajitas"
+msgstr "Combo Fajitas"
+
+msgid "3 tortillas de harina, fajitas con carne sazonadas con verduras de temporada, crema agria, pico de gallo, guacamole, salsa de la casa y bebida a elegir."
+msgstr "3 tortillas de harina, fajitas con carne sazonadas con verduras de temporada, crema agria, pico de gallo, guacamole, salsa de la casa y bebida a elegir."
+
+msgid "Coca Cola"
+msgstr "Coca Cola"
+
+msgid "Bebida gaseosa Coca Cola original"
+msgstr "Bebida gaseosa Coca Cola original."
+
+msgid "Coca Cola Zero"
+msgstr "Coca Cola Zero"
+
+msgid "Bebida gaseosa Coca Cola sin azúcar"
+msgstr "Bebida gaseosa Coca Cola sin azúcar."
+
+msgid "Agua Manzana"
+msgstr "Agua Manzana"
+
+msgid "Agua saborizada Manzana Brisa"
+msgstr "Agua saborizada Manzana Brisa."
+
+msgid "Agua Maracuya"
+msgstr "Agua Maracuyá"
+
+msgid "Agua saborizada Maracuya Brisa"
+msgstr "Agua saborizada Maracuyá Brisa."
+
+msgid "Agua Limón"
+msgstr "Agua Limón"
+
+msgid "Agua saborizada Limón Brisa"
+msgstr "Agua saborizada Limón Brisa."

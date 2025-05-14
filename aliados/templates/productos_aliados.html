@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Productos Aliados</title>
+    <meta charset="UTF-8">
+    <title>{% load i18n %}{% trans "Productos Aliados" %}</title>
 </head>
 <body>
-    <h1>Productos de aliados (Cursos)</h1>
+    <h1>{% trans "Productos de aliados (Cursos)" %}</h1>
 
     <form method="get" action=".">
-        <input type="text" name="q" placeholder="Buscar cursos" value="{{ query }}">
-        <button type="submit">Buscar</button>
+        <input type="text" name="q" placeholder="{% trans 'Buscar cursos' %}" value="{{ query }}">
+        <button type="submit">{% trans "Buscar" %}</button>
     </form>
 
     {% if cursos %}
@@ -18,14 +19,14 @@
                 <a href="{% url 'detalle_curso' curso.id %}">
                     <strong>{{ curso.title }}</strong>
                 </a><br>
-                Categoría: {{ curso.category }}<br>
-                Dificultad: {{ curso.difficulty }}<br>
-                Descripción: {{ curso.description|truncatewords:20 }}
+                {% trans "Categoría" %}: {{ curso.category }}<br>
+                {% trans "Dificultad" %}: {{ curso.difficulty }}<br>
+                {% trans "Descripción" %}: {{ curso.description|truncatewords:20 }}
             </li>
         {% endfor %}
         </ul>
     {% else %}
-        <p>No se pudo obtener la información de los productos aliados.</p>
+        <p>{% trans "No se pudo obtener la información de los productos aliados." %}</p>
     {% endif %}
 </body>
 </html>

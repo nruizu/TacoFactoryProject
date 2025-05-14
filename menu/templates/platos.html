@@ -1,67 +1,84 @@
 <!-- Autor: Camila Martínez -->
-
 {% extends base_template %}
-{% load static %}
+{% load static i18n %}
 
-{% block title %}Menú de Platos{% endblock %}
+{% block title %}{% trans "Menú de Platos" %}{% endblock %}
 
 {% block content %}
 <div class="container mt-5" style="margin: 20px;">
-    <h1 class="mb-4 text-white">Menú de Platos</h1>
+  <h1 class="mb-4 text-white">{% trans "Menú de Platos" %}</h1>
 
-    <!-- Barra de búsqueda -->
-    <form method="GET" action="{% url 'platos' %}" class="mb-4">
-        <div class="input-group">
-            <input type="text" name="q" class="form-control" placeholder="Buscar un plato..." value="{{ query }}">
-            <button type="submit" class="btn btn-primary">Buscar</button>
-        </div>
-    </form>
-
-    <!-- Sección de Plato Fuerte -->
-    <h2 class="text-white">Plato Fuerte</h2>
-    <div class="container">
-        <div class="row">
-            {% for plato in platos_fuertes %}
-                <div class="col-md-3 mb-4">
-                    <div class="card box">
-                        <img src="/media/plato/{{ plato.imagen }}" class="card-img-top" alt="{{ plato.nombre }}">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">{{ plato.nombre }}</h5>
-                            <p class="card-text">{{ plato.descripcion }}</p>
-                            <p class="fw-bold text-success">Precio: ${{ plato.precio }}</p>
-                            <button class="btn btn-success w-100 btn-agregar-carrito" data-idplato="{{ plato.idPlato }}" data-tipo="plato">Agregar al carrito</button>
-                        </div>
-
-                    </div>
-                </div>
-            {% empty %}
-                <p class="text-white">No se encontraron platos fuertes.</p>
-            {% endfor %}
-        </div>
+  <!-- Barra de búsqueda -->
+  <form method="GET" action="{% url 'platos' %}" class="mb-4">
+    <div class="input-group">
+      <input type="text" name="q" class="form-control"
+             placeholder="{% trans 'Buscar un plato...' %}"
+             value="{{ query }}">
+      <button type="submit" class="btn btn-primary">
+        {% trans "Buscar" %}
+      </button>
     </div>
+  </form>
 
-    <!-- Sección de Combos -->
-    <h2 class="text-white">Combos</h2>
-    <div class="container">
-        <div class="row">
-            {% for plato in combos %}
-                <div class="col-md-3 mb-4">
-                    <div class="card box">
-                        <img src="/media/plato/{{ plato.imagen }}" class="card-img-top" alt="{{ plato.nombre }}">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">{{ plato.nombre }}</h5>
-                            <p class="card-text">{{ plato.descripcion }}</p>
-                            <p class="fw-bold text-success">Precio: ${{ plato.precio }}</p>
-                            <button class="btn btn-success w-100 btn-agregar-carrito" data-idplato="{{ plato.idPlato }}" data-tipo="plato">Agregar al carrito</button>
-                        </div>
-
-                    </div>
-                </div>
-            {% empty %}
-                <p class="text-white">No se encontraron combos.</p>
-            {% endfor %}
+  <!-- Sección de Plato Fuerte -->
+  <h2 class="text-white">{% trans "Plato Fuerte" %}</h2>
+  <div class="row">
+    {% for plato in platos_fuertes %}
+      <div class="col-md-3 mb-4">
+        <div class="card box">
+          {% if plato.imagen %}
+            <img src="{{ plato.imagen.url }}" class="card-img-top" alt="{{ plato.nombre }}">
+          {% else %}
+            <img src="{% static 'menu/placeholder.png' %}" class="card-img-top" alt="{% trans 'Sin imagen' %}">
+          {% endif %}
+          <div class="card-body text-center">
+            <h5 class="card-title">{% trans plato.nombre %}</h5>
+            <p class="card-text">{% trans plato.descripcion %}</p>
+            <p class="fw-bold text-success">
+              {% trans "Precio:" %} ${{ plato.precio }}
+            </p>
+            <button class="btn btn-success w-100 btn-agregar-carrito"
+                    data-idplato="{{ plato.idPlato }}"
+                    data-tipo="plato">
+              {% trans "Agregar al carrito" %}
+            </button>
+          </div>
         </div>
-    </div>
+      </div>
+    {% empty %}
+      <p class="text-white">{% trans "No se encontraron platos fuertes." %}</p>
+    {% endfor %}
+  </div>
+
+  <!-- Sección de Combos -->
+  <h2 class="text-white">{% trans "Combos" %}</h2>
+  <div class="row">
+    {% for plato in combos %}
+      <div class="col-md-3 mb-4">
+        <div class="card box">
+          {% if plato.imagen %}
+            <img src="{{ plato.imagen.url }}" class="card-img-top" alt="{{ plato.nombre }}">
+          {% else %}
+            <img src="{% static 'menu/placeholder.png' %}" class="card-img-top" alt="{% trans 'Sin imagen' %}">
+          {% endif %}
+          <div class="card-body text-center">
+            <h5 class="card-title">{% trans plato.nombre %}</h5>
+            <p class="card-text">{% trans plato.descripcion %}</p>
+            <p class="fw-bold text-success">
+              {% trans "Precio:" %} ${{ plato.precio }}
+            </p>
+            <button class="btn btn-success w-100 btn-agregar-carrito"
+                    data-idplato="{{ plato.idPlato }}"
+                    data-tipo="plato">
+              {% trans "Agregar al carrito" %}
+            </button>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p class="text-white">{% trans "No se encontraron combos." %}</p>
+    {% endfor %}
+  </div>
 </div>
 
 <!-- Incluir jQuery y carrito.js -->
@@ -69,17 +86,16 @@
 <script src="{% static 'menu/carrito.js' %}"></script>
 
 <style>
-    .box {
-        background: #1a1a1a;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        color: white;
-        margin: 10px;
-    }
-
-    .container {
-        margin: 20px;
-    }
+  .box {
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: white;
+    margin: 10px;
+  }
+  .container {
+    margin: 20px;
+  }
 </style>
 {% endblock %}

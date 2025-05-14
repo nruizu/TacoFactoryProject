@@ -1,8 +1,9 @@
 {% extends base_template %}
+{% load static i18n %}
 {% load static %}
 {% block content %}
 <div style="padding: 20px;">
-    <h2 style="text-align:center; color: #a80032;">Nuestras Sedes</h2>
+    <h2 style="text-align:center; color: #a80032;">{% trans "Nuestras sedes" %}</h2>
     <div id="map" style="height: 500px; width: 100%; margin-top: 20px;"></div>
 </div>
 

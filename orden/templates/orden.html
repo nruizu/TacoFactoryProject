@@ -4,12 +4,13 @@
 {% load static %}
 {% load tz %}
 {% load humanize %}
+{% load i18n %}
 
 {% block content %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orden de Compra</title>
+    <title>{% trans "Orden de Compra" %}</title>
     <style>
         body {
             color: black;
@@ -64,21 +65,21 @@
 
 <body>
     <div class="orden-container">
-        <h2>Orden de Compra</h2>
+        <h2>{% trans "Orden de Compra" %}</h2>
         <div class="orden-info">
-            <p><strong>Cliente:</strong> {{ orden.usuario.username }}</p>
-            <p><strong>Fecha:</strong> {% localtime on %}{{ orden.fecha_creacion|date:"F j, Y, g:i a" }}{% endlocaltime %}</p>
-            <p><strong>Método de Pago:</strong> {{ orden.get_metodo_pago_display }}</p>
-            <p><strong>Número de Tarjeta:</strong> {{ orden.numero_tarjeta }}</p>
+            <p><strong>{% trans "Cliente:" %}</strong> {{ orden.usuario.username }}</p>
+            <p><strong>{% trans "Fecha:" %}</strong> {% localtime on %}{{ orden.fecha_creacion|date:"F j, Y, g:i a" }}{% endlocaltime %}</p>
+            <p><strong>{% trans "Método de Pago:" %}</strong> {{ orden.get_metodo_pago_display }}</p>
+            <p><strong>{% trans "Número de Tarjeta:" %}</strong> {{ orden.numero_tarjeta }}</p>
         </div>
 
-        <h3>Platos</h3>
+        <h3>{% trans "Platos" %}</h3>
         <table>
             <tr>
-                <th>Nombre</th>
-                <th>Cantidad</th>
-                <th>Precio Unitario</th>
-                <th>Total</th>
+                <th>{% trans "Nombre" %}</th>
+                <th>{% trans "Cantidad" %}</th>
+                <th>{% trans "Precio Unitario" %}</th>
+                <th>{% trans "Total" %}</th>
             </tr>
             {% for item in orden.ordenplato_set.all %}
             <tr>
@@ -90,13 +91,13 @@
             {% endfor %}
         </table>
 
-        <h3>Bebidas</h3>
+        <h3>{% trans "Bebidas" %}</h3>
         <table>
             <tr>
-                <th>Nombre</th>
-                <th>Cantidad</th>
-                <th>Precio Unitario</th>
-                <th>Total</th>
+                <th>{% trans "Nombre" %}</th>
+                <th>{% trans "Cantidad" %}</th>
+                <th>{% trans "Precio Unitario" %}</th>
+                <th>{% trans "Total" %}</th>
             </tr>
             {% for item in orden.ordenbebida_set.all %}
             <tr>
@@ -108,15 +109,15 @@
             {% endfor %}
         </table>
 
-        <h3 class="total">Total Pagado: ${{ orden.monto_total }}</h3>
+        <h3 class="total">{% trans "Total Pagado:" %} ${{ orden.monto_total }}</h3>
 
         <form action="{% url 'descargar_orden' orden.id %}" method="get">
-            <label>Descargar Orden:</label>
+            <label>{% trans "Descargar Orden:" %}</label>
             <select name="formato" id="formato">
-                <option value="txt">TXT</option>
-                <option value="json">JSON</option>
+                <option value="txt">{% trans "TXT" %}</option>
+                <option value="json">{% trans "JSON" %}</option>
             </select>
-            <button type="submit">Descargar</button>
+            <button type="submit">{% trans "Descargar" %}</button>
         </form>
         
     </div>

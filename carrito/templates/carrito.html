@@ -2,6 +2,7 @@
 
 {% extends 'base_loged.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
 
@@ -14,42 +15,42 @@
 </style>
 
 <div class="carrito-container">
-    <h2>Tu Carrito</h2>
+    <h2>{% trans "Tu Carrito" %}</h2>
     <div id="carrito-items">
         {% if platos or bebidas %}
             {% for item in platos %}
             <div class="carrito-item" data-id="{{ item.id }}" data-tipo="plato">
                 <p>{{ item.plato.nombre }}</p>
-                <p>Cantidad: <span class="cantidad">{{ item.cantidad }}</span></p>
-                <p>Precio: ${{ item.plato.precio }}</p>
-                <button class="btn-restar">-</button>
-                <button class="btn-sumar">+</button>
-                <button class="btn-eliminar">Eliminar</button>
+                <p>{% trans "Cantidad:" %} <span class="cantidad">{{ item.cantidad }}</span></p>
+                <p>{% trans "Precio:" %} ${{ item.plato.precio }}</p>
+                <button class="btn-restar">{% trans "-" %}</button>
+                <button class="btn-sumar">{% trans "+" %}</button>
+                <button class="btn-eliminar">{% trans "Eliminar" %}</button>
             </div>
             {% endfor %}
             
             {% for item in bebidas %}
             <div class="carrito-item" data-id="{{ item.id }}" data-tipo="bebida">
                 <p>{{ item.bebida.nombre }}</p>
-                <p>Cantidad: <span class="cantidad">{{ item.cantidad }}</span></p>
-                <p>Precio: ${{ item.bebida.precio }}</p>
-                <button class="btn-restar">-</button>
-                <button class="btn-sumar">+</button>
-                <button class="btn-eliminar">Eliminar</button>
+                <p>{% trans "Cantidad:" %} <span class="cantidad">{{ item.cantidad }}</span></p>
+                <p>{% trans "Precio:" %} ${{ item.bebida.precio }}</p>
+                <button class="btn-restar">{% trans "-" %}</button>
+                <button class="btn-sumar">{% trans "+" %}</button>
+                <button class="btn-eliminar">{% trans "Eliminar" %}</button>
             </div>
             {% endfor %}
         {% else %}
             <p style="text-align: center; font-size: 18px; color: gray; margin-top: 20px;">
-                Tu carrito está vacío. ¡Agrega algunos productos!
+                {% trans "Tu carrito está vacío. ¡Agrega algunos productos!" %}
             </p>
         {% endif %}
     </div>
 
     <!-- Subtotal y botón de pago -->
     <div class="subtotal-container">
-        <p style="color: black; background-color: white; font-weight: bold;">Subtotal: <span id="subtotal" style="color: black; background-color: white; font-weight: bold;">${{ subtotal|default:"0.00" }}</span></p>
+        <p style="color: black; background-color: white; font-weight: bold;">{% trans "Subtotal:" %} <span id="subtotal" style="color: black; background-color: white; font-weight: bold;">${{ subtotal|default:"0.00" }}</span></p>
         <form action="{% url 'pago' %}" method="GET">
-            <button id="boton-pago" {% if not platos and not bebidas %}disabled{% endif %}>Proceder al Pago</button>
+            <button id="boton-pago" {% if not platos and not bebidas %}disabled{% endif %}>{% trans "Proceder al Pago" %}</button>
         </form>
     </div>
 </div>

@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     #third party apps
     'rest_framework',
     'aliados',
+    'modeltranslation',
 ]
 
 MIDDLEWARE = [
@@ -58,6 +59,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
@@ -168,3 +170,22 @@ SESSION_COOKIE_SECURE = False  # Cambiar a True en producción con HTTPS
 
 TIME_ZONE = 'America/Bogota'
 USE_TZ = True
+
+USE_I18N = True
+USE_L10N = True
+
+LANGUAGE_CODE = 'es'  # o 'en', dependiendo del idioma por defecto
+
+LANGUAGES = [
+    ('es', 'Español'),
+    ('en', 'English'),
+]
+
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
+
+import os
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

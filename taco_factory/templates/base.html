@@ -1,8 +1,6 @@
-<!-- Autor: Samuel Gutierrez -->
-
-{% load static %}
+{% load static i18n %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE }}">
 <head>
     <link rel="stylesheet" href="{% static 'base/styles.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,15 +10,40 @@
     <nav class="nav">
         <div class="nav__ul-container">
             <ul class="nav__ul">
-                <li class="nav__item"><a href="{% url 'home' %}" class="nav__link">Home</a></li>
-                <li class="nav__item"><a href="{% url 'platos' %}" class="nav__link">Platos</a></li>
-                <li class="nav__item"><a href="{% url 'bebidas' %}" class="nav__link">Bebidas</a></li>
-                <li class="nav__item"><a href="{% url 'puntos_fisicos' %}" class="nav__link">Puntos Fisicos</a></li>
-                <li class="nav__item"><a href="{% url 'login' %}" class="nav__link link--login">Iniciar sesión</a></li>
-                <li class="nav__item"><a href="{% url 'registro' %}" class="nav__link link--register">Registrarse</a></li>
+                <li class="nav__item"><a href="{% url 'home' %}" class="nav__link">{% trans 'Home' %}</a></li>
+                <li class="nav__item"><a href="{% url 'platos' %}" class="nav__link">{% trans 'Platos' %}</a></li>
+                <li class="nav__item"><a href="{% url 'bebidas' %}" class="nav__link">{% trans 'Bebidas' %}</a></li>
+                <li class="nav__item"><a href="{% url 'puntos_fisicos' %}" class="nav__link">{% trans 'Puntos Fisicos' %}</a></li>
+                
+                {% if user.is_authenticated %}
+                    <li class="nav__item"><a href="{% url 'logout' %}" class="nav__link">{% trans 'Cerrar sesion' %}</a></li>
+                {% else %}
+                    <li class="nav__item"><a href="{% url 'login' %}" class="nav__link link--login">{% trans 'Iniciar sesion' %}</a></li>
+                    <li class="nav__item"><a href="{% url 'registro' %}" class="nav__link link--register">{% trans 'Registrarse' %}</a></li>
+                {% endif %}
+
+                <!-- Selector de idioma -->
+                {% get_current_language as LANGUAGE_CODE %}
+                <li class="nav__item">
+                    <form action="{% url 'set_language' %}" method="post" class="nav__link" style="padding:0; margin:0;">
+                        {% csrf_token %}
+                        <select name="language"
+                                onchange="this.form.submit()"
+                                class="nav__link"
+                                style="background:transparent; border:none; cursor:pointer;">
+                            <option value="es" {% if LANGUAGE_CODE == 'es' %}selected{% endif %}>
+                                Español
+                            </option>
+                            <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>
+                                English
+                            </option>
+                        </select>
+                    </form>
+                </li>
             </ul>
         </div>
     </nav>
+
     {% block content %}
     {% endblock %}
 </body>

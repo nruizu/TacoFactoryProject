@@ -6,30 +6,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'pago/styles_pago.css' %}">
-    <title>Pago</title>
+    <title>{% trans "Pago" %}</title>
 </head>
 <body style="background-color: #000; font-family: Arial, sans-serif;">
 
     <div style="background-color: #fff0f5; padding: 30px; border-radius: 15px; max-width: 500px; margin: 50px auto; box-shadow: 0 0 15px rgba(0,0,0,0.3);">
-        <h2 style="text-align: center; color: #8B002D; margin-bottom: 30px; font-size: 28px;">Pasarela de Pago</h2>
+        <h2 style="text-align: center; color: #8B002D; margin-bottom: 30px; font-size: 28px;">{% trans "Pasarela de Pago" %}</h2>
         <form method="POST">
             {% csrf_token %}
             
-            <label for="{{ form.metodoPago.id_for_label }}" style="display: block; margin-bottom: 8px; color: #333; font-weight: bold;">Método de pago:</label>
+            <label for="{{ form.metodoPago.id_for_label }}" style="display: block; margin-bottom: 8px; color: #333; font-weight: bold;">{% trans "Método de pago:" %}</label>
             {{ form.metodoPago }}
 
-            <label for="{{ form.numeroTarjeta.id_for_label }}" style="display: block; margin-top: 20px; margin-bottom: 8px; color: #333; font-weight: bold;">Número de Tarjeta:</label>
+            <label for="{{ form.numeroTarjeta.id_for_label }}" style="display: block; margin-top: 20px; margin-bottom: 8px; color: #333; font-weight: bold;">{% trans "Número de Tarjeta:" %}</label>
             {{ form.numeroTarjeta }}
 
-            <label for="{{ form.numeroSeguridad.id_for_label }}" style="display: block; margin-top: 20px; margin-bottom: 8px; color: #333; font-weight: bold;">Número de Seguridad:</label>
+            <label for="{{ form.numeroSeguridad.id_for_label }}" style="display: block; margin-top: 20px; margin-bottom: 8px; color: #333; font-weight: bold;">{% trans "Número de Seguridad:" %}</label>
             {{ form.numeroSeguridad }}
 
-            <label for="{{ form.fechaVencimiento.id_for_label }}" style="display: block; margin-top: 20px; margin-bottom: 8px; color: #333; font-weight: bold;">Fecha de Vencimiento:</label>
+            <label for="{{ form.fechaVencimiento.id_for_label }}" style="display: block; margin-top: 20px; margin-bottom: 8px; color: #333; font-weight: bold;">{% trans "Fecha de Vencimiento:" %}</label>
             {{ form.fechaVencimiento }}
 
-            <h4 style="text-align: center; margin-top: 30px; color: #000; font-weight: bold;">Total a pagar: ${{ totalPago }}</h4>
+            <h4 style="text-align: center; margin-top: 30px; color: #000; font-weight: bold;">{% trans "Total a pagar:" %} ${{ totalPago }}</h4>
             
-            <input type="submit" value="Pagar" style="background-color: #8B002D; color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; display: block; margin: 30px auto 0 auto; transition: background-color 0.3s;">
+            <input type="submit" value="{% trans 'Pagar' %}" style="background-color: #8B002D; color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; display: block; margin: 30px auto 0 auto; transition: background-color 0.3s;">
         </form>
     </div>
 

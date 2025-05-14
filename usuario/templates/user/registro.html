@@ -1,32 +1,32 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}  <!-- Cargar la librería de i18n para usar gettext -->
 
 {% block content %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'user/styles_user.css' %}">
-    <title>Registro</title>
+    <title>{% trans "Registro" %}</title>
 </head>
 <body>
     <div class="form-container-registro">
-        <h2 class="form-title">Registro</h2>
+        <h2 class="form-title">{% trans "Registro" %}</h2>
         <div class="form">
             <form method="POST">
                 {% csrf_token %}
-                <input type="text" class="form-text" name="username" placeholder="Nombre de usuario" required><br>
-                <input type="email" class="form-text" name="email" placeholder="Correo" required><br>
-                <input type="text" class="form-text" name="numDocumento" placeholder="Numero de documento" required><br>
-                <input type="text" class="form-text" name="celular" placeholder="Numero de celular" required><br>
-                <input type="text" class="form-text form-document" name="direccion" placeholder="Direccion" required><br>
-                <input type="text" class="form-text" name="password1" id="id_password1" placeholder="Contraseña" required><br>
-                <input type="text" class="form-text" name="password2" id="id_password2" placeholder="Confirmar contraseña" required><br>
-                <p class="texto">Ya tienes una cuenta? <a class="vinculo" href="{% url 'login' %}">Inicia Sesion</a></p><br>
-                <input type="submit" class="form-button" value="Registrarse">
+                <input type="text" class="form-text" name="username" placeholder="{% trans 'Nombre de usuario' %}" required><br>
+                <input type="email" class="form-text" name="email" placeholder="{% trans 'Correo' %}" required><br>
+                <input type="text" class="form-text" name="numDocumento" placeholder="{% trans 'Numero de documento' %}" required><br>
+                <input type="text" class="form-text" name="celular" placeholder="{% trans 'Numero de celular' %}" required><br>
+                <input type="text" class="form-text form-document" name="direccion" placeholder="{% trans 'Direccion' %}" required><br>
+                <input type="text" class="form-text" name="password1" id="id_password1" placeholder="{% trans 'Contraseña' %}" required><br>
+                <input type="text" class="form-text" name="password2" id="id_password2" placeholder="{% trans 'Confirmar contraseña' %}" required><br>
+                <p class="texto">{% trans 'Ya tienes una cuenta?' %} <a class="vinculo" href="{% url 'login' %}">{% trans 'Inicia Sesion' %}</a></p><br>
+                <input type="submit" class="form-button" value="{% trans 'Registrarse' %}">
             </form>
         </div>
     </div>
 </body>
 
 {% endblock %}
-

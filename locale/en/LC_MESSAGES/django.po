@@ -1,0 +1,353 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: en\n"
+
+# MENU
+msgid "Menú de Bebidas"
+msgstr "Drinks Menu"
+
+msgid "Buscar una bebida..."
+msgstr "Search for a drink..."
+
+msgid "Buscar"
+msgstr "Search"
+
+msgid "Gaseosas"
+msgstr "Sodas"
+
+msgid "No se encontraron gaseosas."
+msgstr "No sodas found."
+
+msgid "Aguas"
+msgstr "Waters"
+
+msgid "No se encontraron aguas."
+msgstr "No waters found."
+
+msgid "Agregar al carrito"
+msgstr "Add to cart"
+
+msgid "Menú de Platos"
+msgstr "Dish Menu"
+
+msgid "Buscar un plato..."
+msgstr "Search for a dish..."
+
+msgid "Plato Fuerte"
+msgstr "Main Dish"
+
+msgid "No se encontraron platos fuertes."
+msgstr "No main dishes found."
+
+msgid "Combos"
+msgstr "Combos"
+
+msgid "No se encontraron combos."
+msgstr "No combos found."
+
+# ALIADOS
+msgid "Detalle del Curso"
+msgstr "Course Detail"
+
+msgid "Descripción"
+msgstr "Description"
+
+msgid "Categoría"
+msgstr "Category"
+
+msgid "Dificultad"
+msgstr "Difficulty"
+
+msgid "Duración estimada"
+msgstr "Estimated duration"
+
+msgid "horas"
+msgstr "hours"
+
+msgid "Precio"
+msgstr "Price"
+
+msgid "Instructor"
+msgstr "Instructor"
+
+msgid "No se pudo cargar el curso."
+msgstr "The course could not be loaded."
+
+msgid "Volver a la lista"
+msgstr "Back to the list"
+
+msgid "Productos de aliados (Cursos)"
+msgstr "Partner Products (Courses)"
+
+msgid "Buscar cursos"
+msgstr "Search courses"
+
+msgid "No se pudo obtener la información de los productos aliados."
+msgstr "Failed to retrieve information about partner products."
+
+# CARRITO
+msgid "Tu Carrito"
+msgstr "Your Cart"
+
+msgid "Cantidad:"
+msgstr "Quantity:"
+
+msgid "Precio:"
+msgstr "Price:"
+
+msgid "Eliminar"
+msgstr "Remove"
+
+msgid "Tu carrito está vacío. ¡Agrega algunos productos!"
+msgstr "Your cart is empty. Add some products!"
+
+msgid "Subtotal:"
+msgstr "Subtotal:"
+
+msgid "Proceder al Pago"
+msgstr "Proceed to Payment"
+
+msgid "+"
+msgstr "+"
+
+msgid "-"
+msgstr "-"
+
+# ORDEN
+msgid "Orden de Compra"
+msgstr "Order of Purchase"
+
+msgid "Cliente:"
+msgstr "Customer:"
+
+msgid "Fecha:"
+msgstr "Date:"
+
+msgid "Método de Pago:"
+msgstr "Payment Method:"
+
+msgid "Número de Tarjeta:"
+msgstr "Card Number:"
+
+msgid "Platos"
+msgstr "Dishes"
+
+msgid "Nombre"
+msgstr "Name"
+
+msgid "Cantidad"
+msgstr "Quantity"
+
+msgid "Precio Unitario"
+msgstr "Unit Price"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Bebidas"
+msgstr "Drinks"
+
+msgid "Total Pagado:"
+msgstr "Total Paid:"
+
+msgid "Descargar Orden:"
+msgstr "Download Order:"
+
+msgid "TXT"
+msgstr "TXT"
+
+msgid "JSON"
+msgstr "JSON"
+
+msgid "Descargar"
+msgstr "Download"
+
+# PAGO
+msgid "Pago"
+msgstr "Payment"
+
+msgid "Pasarela de Pago"
+msgstr "Payment Gateway"
+
+msgid "Método de pago:"
+msgstr "Payment Method:"
+
+msgid "Número de Seguridad:"
+msgstr "Security Number:"
+
+msgid "Fecha de Vencimiento:"
+msgstr "Expiration Date:"
+
+msgid "Total a pagar:"
+msgstr "Total to Pay:"
+
+msgid "Pagar"
+msgstr "Pay"
+
+# TACO
+msgid "Home"
+msgstr "Home"
+
+msgid "Puntos Fisicos"
+msgstr "Locations"
+
+msgid "Cerrar Sesion"
+msgstr "Logout"
+
+# USER - LOGIN Y REGISTRO
+msgid "Inicio de Sesion"
+msgstr "Login"
+
+msgid "Inicia Sesion"
+msgstr "Log In"
+
+msgid "Correo"
+msgstr "Email"
+
+msgid "Contraseña"
+msgstr "Password"
+
+msgid "Eres nuevo?"
+msgstr "New here?"
+
+msgid "Regístrate"
+msgstr "Sign In"
+
+msgid "Iniciar Sesion"
+msgstr "Log In"
+
+msgid "Registro"
+msgstr "Sign In"
+
+msgid "Nombre de usuario"
+msgstr "Username"
+
+msgid "Numero de documento"
+msgstr "Document Number"
+
+msgid "Numero de celular"
+msgstr "Cell Phone Number"
+
+msgid "Direccion"
+msgstr "Address"
+
+msgid "Confirmar contraseña"
+msgstr "Confirm Password"
+
+msgid "Ya tienes una cuenta?"
+msgstr "Already have an account?"
+
+msgid "Registrarse"
+msgstr "Sign In"
+
+msgid "Nuestras sedes"
+msgstr "Our places"
+
+msgid "Flauta de Queso"
+msgstr "Cheese Flauta"
+
+msgid "Flauta de tortilla de harina con queso mozzarella, guacamole, sour cream y salsa a elegir."
+msgstr "Flour tortilla flauta with mozzarella cheese, guacamole, sour cream, and sauce of your choice."
+
+msgid "Taco"
+msgstr "Taco"
+
+msgid "Taco con vegetales de temporada, proteína y salsa a elegir."
+msgstr "Taco with seasonal vegetables, protein, and sauce of your choice."
+
+msgid "Sopa de Tomate"
+msgstr "Tomato Soup"
+
+msgid "Sopa de tomate fresco con queso, nachos y proteína a elegir."
+msgstr "Fresh tomato soup with cheese, nachos, and protein of your choice."
+
+msgid "Nachos Sencillos"
+msgstr "Simple Nachos"
+
+msgid "Porción de nachos acompañados de 2 salsas a elegir."
+msgstr "Portion of nachos with 2 sauces of your choice."
+
+msgid "Burrito Junior"
+msgstr "Junior Burrito"
+
+msgid "Burrito con arroz, frijoles, vegetales, queso, proteína y salsa a elegir."
+msgstr "Burrito with rice, beans, vegetables, cheese, protein, and sauce of your choice."
+
+msgid "Burrito Mixto 2 Proteinas"
+msgstr "Mixed Burrito with 2 Proteins"
+
+msgid "Burrito con arroz, frijoles, vegetales de temporada, queso, 2 proteínas y salsa a elegir."
+msgstr "Burrito with rice, beans, seasonal vegetables, cheese, 2 proteins, and sauce of your choice."
+
+msgid "Combo Burrito"
+msgstr "Burrito Combo"
+
+msgid "Burrito con arroz al limon y cilantro , frijol, vegetales salteados, queso, maíz tierno, maduro, 1 proteína, salsas de la casa y bebida a elegir."
+msgstr "Burrito with lemon cilantro rice, beans, sautéed vegetables, cheese, tender corn, ripe, 1 protein, house sauces, and drink of your choice."
+
+msgid "Combo Quesadilla"
+msgstr "Quesadilla Combo"
+
+msgid "Quesadilla con 1 proteína, queso mozarella, maíz o maduro, guacamole y sour cream, 1 salsa de la casa y bebida a elegir."
+msgstr "Quesadilla with 1 protein, mozzarella cheese, corn or ripe plantain, guacamole, sour cream, 1 house sauce, and drink of your choice."
+
+msgid "Combo Ensalada Mexicana"
+msgstr "Mexican Salad Combo"
+
+msgid "Ensalada mexicana con guacamole, pico de gallo, vegetales salteados, lechuga, 1 proteína, jalapeños, maíz, queso mozarella, maduro, salsa de la casa y bebida a elegir."
+msgstr "Mexican salad with guacamole, pico de gallo, sautéed vegetables, lettuce, 1 protein, jalapeños, corn, mozzarella cheese, ripe plantain, house sauce, and drink of your choice."
+
+msgid "Combo Molde de Papas"
+msgstr "Potato Mold Combo"
+
+msgid "Papa a la francesa gratinadas con queso mozzarella, pico de gallo, guacamole, mayonesa ranchera, proteína, salsa de la casa y bebida a elegir."
+msgstr "French fries gratin with mozzarella cheese, pico de gallo, guacamole, ranch mayonnaise, protein, house sauce, and drink of your choice."
+
+msgid "Combo tres Tacos"
+msgstr "Three Tacos Combo"
+
+msgid "3 tacos con proteína a elegir, lechuga, guacamole, pico de gallo, maduro o maíz, sour cream, queso y salsa de la casa a elegir."
+msgstr "3 tacos with protein of your choice, lettuce, guacamole, pico de gallo, ripe plantain or corn, sour cream, cheese, and house sauce of your choice."
+
+msgid "Combo Nachos Gratinados"
+msgstr "Gratinated Nachos Combo"
+
+msgid "Nachos de maíz sobre base de queso, 1 proteína, gratinado con queso mozzarella, pico de gallo, guacamole y bebida a elegir."
+msgstr "Corn nachos on a cheese base, 1 protein, gratinated with mozzarella cheese, pico de gallo, guacamole, and drink of your choice."
+
+msgid "Combo Fajitas"
+msgstr "Fajitas Combo"
+
+msgid "3 tortillas de harina, fajitas con carne sazonadas con verduras de temporada, crema agria, pico de gallo, guacamole, salsa de la casa y bebida a elegir."
+msgstr "3 flour tortillas, fajitas with seasoned meat and seasonal vegetables, sour cream, pico de gallo, guacamole, house sauce, and drink of your choice."
+
+msgid "Coca Cola"
+msgstr "Coca Cola"
+
+msgid "Bebida gaseosa Coca Cola original"
+msgstr "Original Coca Cola soft drink."
+
+msgid "Coca Cola Zero"
+msgstr "Coca Cola Zero"
+
+msgid "Bebida gaseosa Coca Cola sin azúcar"
+msgstr "Sugar-free Coca Cola soft drink."
+
+msgid "Agua Manzana"
+msgstr "Apple Water"
+
+msgid "Agua saborizada Manzana Brisa"
+msgstr "Apple-flavored Brisa Water."
+
+msgid "Agua Maracuya"
+msgstr "Passion Fruit Water"
+
+msgid "Agua saborizada Maracuya Brisa"
+msgstr "Passion fruit-flavored Brisa Water."
+
+msgid "Agua Limón"
+msgstr "Lemon Water"
+
+msgid "Agua saborizada Limón Brisa"
+msgstr "Lemon-flavored Brisa Water."
